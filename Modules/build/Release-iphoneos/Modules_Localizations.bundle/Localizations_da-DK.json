@@ -1,0 +1,185 @@
+{
+  "data" : {
+    "dashboard" : {
+      "allOrdersButton" : "Se tidligere ordrer",
+      "columnAccepted" : "Accepterede",
+      "columnAcceptedEmpty" : "Ingen ordrer tilberedes",
+      "columnDoneToday" : "Gennemført i dag",
+      "columnDoneTodayEmpty" : "Ingen ordrer leveret i dag",
+      "columnIncoming" : "Nye ordrer",
+      "columnIncomingEmpty" : "Ingen nye ordrer",
+      "columnOutForDelivery" : "Under levering",
+      "columnOutForDeliveryEmpty" : "Ingen ordrer leveres",
+      "columnReady" : "Klar til afhentning",
+      "columnReadyEmpty" : "Ingen ordrer afventer afhentning",
+      "itemsPlural" : "varer",
+      "itemsSingular" : "vare",
+      "sectionLater" : "Senere",
+      "sectionToday" : "I dag",
+      "sectionTomorrow" : "I morgen"
+    },
+    "default" : {
+      "back" : "Tilbage",
+      "cancel" : "Annuller",
+      "edit" : "Rediger",
+      "later" : "Senere",
+      "next" : "Næste",
+      "no" : "Nej",
+      "ok" : "Ok",
+      "previous" : "Forrige",
+      "retry" : "Prøv igen",
+      "save" : "Gem",
+      "settings" : "Indstillinger",
+      "skip" : "Spring over",
+      "yes" : "Ja"
+    },
+    "deliveryType" : {
+      "collect" : "Afhentes",
+      "delivery" : "Leveres"
+    },
+    "error" : {
+      "authenticationError" : "Login er udløbet, login venligst ind igen.",
+      "connectionError" : "Ingen eller dårlig forbindelse til internettet",
+      "errorTitle" : "Fejl",
+      "serverError" : "Ingen forbindelse til system",
+      "unknownError" : "Ukendt fejl, prøv igen."
+    },
+    "login" : {
+      "appName" : "Merchant ",
+      "appVersionPrefix" : "Version",
+      "emailHeader" : "Email",
+      "emailPlaceholder" : "Skriv her",
+      "errorInvalidCredentials" : "Ugyldige loginoplysninger",
+      "loginButton" : "Log ind",
+      "passwordHeader" : "Password",
+      "passwordPlaceholder" : "Skriv her",
+      "resetPasswordMessage" : "Kontakt [hovedkontoret] for at nulstille passwordet.",
+      "title" : "Log ind"
+    },
+    "orderDetailNewOrderSection" : {
+      "acceptButton" : "Acceptér",
+      "customerNameHeader" : "Kundens navn",
+      "deliveryTimeHeader" : "Leveringstid",
+      "header" : "Ny ordre",
+      "phoneNumberHeader" : "Telefonnummer",
+      "pickedUpInStoreAt" : "Afhentes i butik",
+      "pickupTimeHeader" : "Afhentningstid",
+      "rejectButton" : "Afvis",
+      "subheader" : "Gennemgå ordren og se om alt kan leveres før ordren accepteres. Ring til kunden for at aftale evt. ombytning, før ordren afvises."
+    },
+    "orderDetails" : {
+      "aPiece" : "pr stk",
+      "completedBanner" : "Denne ordre er afsluttet",
+      "customerNoteHeader" : "Note fra kunde",
+      "deliveryTypeHeader" : "Leveringstype",
+      "errorCouldNotFetchProducts" : "Hentning af produkter mislykkedes🤬",
+      "errorStatusUpdateFailed" : "Opdatering af status for ordre mislykkedes🥲\nPrøv igen!",
+      "includeCutlery" : "Inkluder bestik",
+      "infoAddress" : "LeveringsAdresse",
+      "infoCustomerName" : "Kundens navn",
+      "infoDeliveryTime" : "Levering",
+      "infoEmail" : "Email",
+      "infoMobilePhone" : "Mobilnummer",
+      "infoOrderTime" : "Bestilling",
+      "infoPaymentType" : "Betalingsform",
+      "infoTakeoutPhone" : "Telefonnummer",
+      "infoTakeOutShopID" : "Takeout Shop ID",
+      "outForDeliveryButton" : "Under levering",
+      "pickedUpButton" : "Afhentet",
+      "pickupTimeHeader" : "Afhentningstid",
+      "printButton" : "Print",
+      "readyButton" : "Klar",
+      "rejectButton" : "Afvis",
+      "rejectOrderAlertCancel" : "Afvis ikke",
+      "rejectOrderAlertConfirm" : "Afvis",
+      "rejectOrderAlertMessage" : "Er du sikker på at du vil afvise denne ordre?",
+      "rejectOrderAlertTitle" : "Afvis ordre",
+      "sectionHeaderColdProducts" : "Kolde",
+      "sectionHeaderCustomerInfo" : "Kundeinformation",
+      "sectionHeaderOrderStatus" : "Ordrestatus",
+      "sectionHeaderOtherProducts" : "Andre",
+      "sectionHeaderTakeout" : "Takeout",
+      "sectionHeaderWarmProducts" : "Varme",
+      "sectionSubheaderColdProducts" : "Pakkes i thermopose",
+      "today" : "I dag",
+      "underPreparationButton" : "Forberedes"
+    },
+    "orderStatus" : {
+      "accepted" : "Accepterede"
+    },
+    "printer" : {
+      "bluetoothHintFooter" : "Printer skal være tilføjet under Bluetooth i indstillinger for iPad for at dukke op her",
+      "connectButton" : "Forbind",
+      "connectedSuccessMessage" : "Printer forbundet!",
+      "deleteButton" : "Slet",
+      "errorSomethingHappened" : "Der skete en fejl i forbindelsen til printeren",
+      "sectionHeaderActivePrinter" : "Aktiv printer",
+      "sectionHeaderNewPrinters" : "Vælg printer",
+      "title" : "Printer"
+    },
+    "printerOutput" : {
+      "coldHeader" : "Kolde",
+      "errorDeviceConnectionFailed" : "Kunne ikke forbinde til printeren",
+      "errorNoDeviceFound" : "Ingen printer forbundet til appen",
+      "includeCutlery" : "Inkludér bestik",
+      "noteHeader" : "Note",
+      "orderNumber" : "Ordrenr",
+      "otherHeader" : "Andre",
+      "warmHeader" : "Varme"
+    },
+    "searchOrders" : {
+      "customerNameHeader" : "Kundens navn",
+      "emptyMessage" : "Ingen ordrer fundet",
+      "orderDateHeader" : "Ordredato og -tid",
+      "orderNumberHeader" : "Nr.",
+      "orderStatusHeader" : "Status",
+      "searchfieldPlaceholder" : "Søg på ordrenr. og navn",
+      "statusAccepted" : "Accepteret",
+      "statusCompleted" : "Leveret",
+      "statusNew" : "Ny",
+      "statusReady" : "Klar til afhentning",
+      "statusRejected" : "Afvist",
+      "statusShipped" : "Under levering",
+      "title" : "Alle ordrer"
+    },
+    "settings" : {
+      "appVersionHeader" : "App-version",
+      "closeButton" : "Luk indstillinger",
+      "logOutAlertCancel" : "Forbliv logget ind",
+      "logOutAlertConfirm" : "Log ud",
+      "logOutAlertMessage" : "Er du sikker på at du vil logge ud?",
+      "logoutAlertTitle" : "Log ud",
+      "logOutButton" : "Log ud",
+      "printerHeader" : "Printer",
+      "selectPrinterButton" : "Vælg printer",
+      "title" : "Indstillinger",
+      "usernameHeader" : "Bruger"
+    },
+    "units" : {
+      "clt" : "Cl",
+      "cmt" : "cm",
+      "d70" : "Cal",
+      "dlt" : "Dl",
+      "e14" : "Kcal",
+      "grm" : "Gr",
+      "h87" : "styk",
+      "kgm" : "Kg",
+      "ltr" : "Liter",
+      "mlt" : "Ml"
+    }
+  },
+  "meta" : {
+    "language" : {
+      "direction" : "LRM",
+      "id" : 6,
+      "is_best_fit" : false,
+      "is_default" : true,
+      "locale" : "da-DK",
+      "name" : "Danish"
+    },
+    "platform" : {
+      "id" : 584,
+      "slug" : "mobile"
+    }
+  }
+}

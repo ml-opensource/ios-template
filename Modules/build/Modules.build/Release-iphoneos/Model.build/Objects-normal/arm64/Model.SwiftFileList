@@ -1,0 +1,12 @@
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/APIError.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/APITokens.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Address.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/FileClient.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/JWT.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Mocks.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Notifications.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Order.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/PaginatedResponse.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Product.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/Store.swift
+/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/Model/TaggedTypes.swift

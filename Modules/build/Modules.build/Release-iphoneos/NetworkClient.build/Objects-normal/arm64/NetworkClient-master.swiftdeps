@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
+options: "279bce955140e95aa56661f014e9bac4aeb0849ca2fe8356d5c70a22d6f90568"
+build_start_time: [1646739673, 558987140]
+build_end_time: [1646739674, 259474992]
+inputs:
+  "/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/NetworkClient/Client.swift": !dirty [1646238462, 587980985]
+  "/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/NetworkClient/Live.swift": !dirty [1646238462, 592545032]

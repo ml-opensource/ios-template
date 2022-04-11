@@ -1,0 +1,5 @@
+#include "Production.xcconfig"
+
+API_BASE_URL_DEV = 7eleven-dev.azurewebsites.net/api/merchant-app
+
+DEFAULT_BASE_URL = API_BASE_URL_PROD

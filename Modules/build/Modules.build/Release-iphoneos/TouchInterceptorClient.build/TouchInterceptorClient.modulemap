@@ -1,0 +1,4 @@
+module TouchInterceptorClient {
+header "TouchInterceptorClient-Swift.h"
+export *
+}

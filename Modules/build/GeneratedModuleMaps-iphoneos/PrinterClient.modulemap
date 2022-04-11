@@ -1,0 +1,4 @@
+module PrinterClient {
+header "PrinterClient-Swift.h"
+export *
+}

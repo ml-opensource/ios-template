@@ -1,0 +1,4 @@
+module AppVersion {
+header "AppVersion-Swift.h"
+export *
+}
