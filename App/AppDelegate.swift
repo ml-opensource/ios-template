@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         let baseURL = Configuration.API.baseURL
 
-        let persistenceClient = PersistenceClient.live(keyPrefix: <#"dk.7-eleven.instore"#>)
+        let persistenceClient = PersistenceClient.live(keyPrefix: Bundle.main.bundleIdentifier!)
 
         #if !RELEASE
             UserDefaults.standard.register(defaults: ["USE_MOCK_API": false])
