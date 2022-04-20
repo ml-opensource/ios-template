@@ -8,17 +8,17 @@
 import Foundation
 import NStackSDK
 
-public func startNStackSDK(appId: String, restAPIKey: String) -> ObservableLocalizations {
+public func startNStackSDK() -> ObservableLocalizations {
     let config = NStackSDK.Configuration(
-        appId: appId, restAPIKey: restAPIKey, localizationClass: Localizations.self,
-        environment: .debug
+        plistName: "NStack",
+        environment: .debug,
+        localizationClass: Localizations.self
     )
 
     NStack.start(configuration: config, launchOptions: nil)
     let localizationsWrapper = ObservableLocalizations(lo)
 
     NStack.sharedInstance.update { _ in
-
         DispatchQueue.main.async {
             localizationsWrapper.updateLocalizations(lo)
         }

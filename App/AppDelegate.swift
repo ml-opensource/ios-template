@@ -42,10 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !Style.registerFonts() {
             fatalError()
         }
-        localizations = startNStackSDK(
-            appId: <#appID#>,
-            restAPIKey: <#restAPIKey#>
-        )
+        var localizations: ObservableLocalizations = {
+            return startNStackSDK()
+        }()
 
        
         let baseURL = Configuration.API.baseURL
