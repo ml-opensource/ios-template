@@ -302,7 +302,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = 74DZF4C6Q5;
+				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
@@ -317,7 +317,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "dk.7-eleven.instore.InStoreApp-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.monstar-lab.template-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -457,7 +457,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = 74DZF4C6Q5;
+				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
@@ -472,7 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "dk.7-eleven.instore.InStoreApp-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.monstar-lab.template-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -488,7 +488,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = 74DZF4C6Q5;
+				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
@@ -503,7 +503,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "dk.7-eleven.instore.InStoreApp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.monstar-lab.template.InStoreApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
