@@ -8,17 +8,17 @@
 import Foundation
 import NStackSDK
 
-public func startNStackSDK() -> ObservableLocalizations {
+public func startNStackSDK(appId: String, restAPIKey: String) -> ObservableLocalizations {
     let config = NStackSDK.Configuration(
-        plistName: "NStack",
-        environment: .debug,
-        localizationClass: Localizations.self
+        appId: appId, restAPIKey: restAPIKey, localizationClass: Localizations.self,
+        environment: .debug
     )
 
     NStack.start(configuration: config, launchOptions: nil)
     let localizationsWrapper = ObservableLocalizations(lo)
 
     NStack.sharedInstance.update { _ in
+
         DispatchQueue.main.async {
             localizationsWrapper.updateLocalizations(lo)
         }
@@ -43,10 +43,20 @@ internal func loadTranslationsFromJSON(_ filename: String, in bundle: Bundle) ->
 
     let data = try! String(contentsOfFile: path).data(using: .utf8)!
     let dict =
-        try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+    try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
     let translationsData = try! JSONSerialization.data(
         withJSONObject: dict["data"]!, options: .fragmentsAllowed)
 
     let result = try! JSONDecoder().decode(Localizations.self, from: translationsData)
     return result
+}
+
+public struct NStackConfig: Decodable {
+    public let appId: String
+    public let apiKey: String
+
+    enum CodingKeys: String, CodingKey {
+        case appId = "APPLICATION_ID"
+        case apiKey = "REST_API_KEY"
+    }
 }
