@@ -42,11 +42,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !Style.registerFonts() {
             fatalError()
         }
-        localizations = startNStackSDK(
-            appId: <#appID#>,
-            restAPIKey: <#restAPIKey#>
-        )
-
+        var localizations: ObservableLocalizations = {
+            guard
+                let url = Bundle.main.url(forResource: "NStack", withExtension: "plist"),
+                let config = try? PropertyListDecoder().decode(NStackConfig.self, from: try Data(contentsOf: url))
+            else {
+                fatalError("Failed to initialize NStack")
+            }
+            return startNStackSDK(appId: config.appId, restAPIKey: config.apiKey)
+        }()
        
         let baseURL = Configuration.API.baseURL
 

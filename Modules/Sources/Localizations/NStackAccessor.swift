@@ -43,10 +43,20 @@ internal func loadTranslationsFromJSON(_ filename: String, in bundle: Bundle) ->
 
     let data = try! String(contentsOfFile: path).data(using: .utf8)!
     let dict =
-        try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+    try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
     let translationsData = try! JSONSerialization.data(
         withJSONObject: dict["data"]!, options: .fragmentsAllowed)
 
     let result = try! JSONDecoder().decode(Localizations.self, from: translationsData)
     return result
+}
+
+public struct NStackConfig: Decodable {
+    public let appId: String
+    public let apiKey: String
+
+    enum CodingKeys: String, CodingKey {
+        case appId = "APPLICATION_ID"
+        case apiKey = "REST_API_KEY"
+    }
 }
