@@ -118,10 +118,6 @@ public func makeGetRequest(
     return request
 }
 
-//func filterForArrayOf<T>(_ type T.Type, parameters: [String: Any]) -> [String: Any] {
-//
-//}
-
 /// Request for posting
 /// - Parameters:
 ///   - url: url + path to hit

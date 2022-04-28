@@ -10,6 +10,7 @@ import Foundation
 import StoreKit
 import XCTestDynamicOverlay
 
+// MARK: - Here are mocked versions of the domain models
 extension Product {
 
     public static let mock = Self(
@@ -87,6 +88,7 @@ extension Array where Element == Order {
     }
 }
 
+/// Used for convenience in mocking and testing
 extension AnyPublisher {
     public static func failing(_ message: String = "") -> Self {
         .fireAndForget {

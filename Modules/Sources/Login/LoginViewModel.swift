@@ -40,10 +40,6 @@ public class LoginViewModel: ObservableObject {
         self.environment = environment
         self.onSuccess = onSuccess
         appVersion = "\(environment.appVersion.version())(\(environment.appVersion.build()))"
-        #if DEBUG
-            email = "711dk009@7-eleven.dk"
-            password = "1B57E5A0"
-        #endif
     }
 
     /// Simple heuristics for email pattern

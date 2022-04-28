@@ -52,14 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let persistenceClient = PersistenceClient.live(keyPrefix: Bundle.main.bundleIdentifier!)
 
-        #if !RELEASE
-            UserDefaults.standard.register(defaults: ["USE_MOCK_API": false])
-            let isUsingMockAPI = UserDefaults.standard.bool(forKey: "USE_MOCK_API")
-            if isUsingMockAPI {
-                persistenceClient.tokens.save(nil)
-            }
-        #endif
-
         let authHandler = AuthenticationHandler(
             refreshURL: <#refreshURL#>,
             tokens: persistenceClient.tokens.load()
@@ -69,9 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let environment = AppEnvironment(
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-            apiClient: isUsingMockAPI
-                ? .functionalMock
-                : .live(baseURL: baseURL, authenticationHandler: authHandler),
+            apiClient: .live(baseURL: baseURL, authenticationHandler: authHandler),
             date: Date.init,
             calendar: .autoupdatingCurrent,
             localizations: localizations,

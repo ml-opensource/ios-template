@@ -18,16 +18,6 @@ import PersistenceClient
 import SwiftUI
 import UIKit
 
-public class MainViewModel: ObservableObject {
-    public struct Environment {
-        var mainQueue: AnySchedulerOf<DispatchQueue>
-    }
-    let environment: Environment
-    public init(environment: Environment) {
-        self.environment = environment
-    }
-}
-
 public class AppViewModel: ObservableObject {
 
     var environment: AppEnvironment
@@ -35,7 +25,7 @@ public class AppViewModel: ObservableObject {
 
     public enum Route {
         case login(LoginViewModel)
-        case dashboard(MainViewModel)
+        case main(MainViewModel)
     }
     @Published var route: Route?
 
@@ -97,8 +87,19 @@ public class AppViewModel: ObservableObject {
     }
     
     func showMain() {
-        route = .dashboard(
+        route = .main(
             .init(environment: .init(mainQueue: environment.mainQueue))
         )
+    }
+}
+
+#warning("Just for demo purposes, this would live in a feature module with the MainView and such")
+public class MainViewModel: ObservableObject {
+    public struct Environment {
+        var mainQueue: AnySchedulerOf<DispatchQueue>
+    }
+    let environment: Environment
+    public init(environment: Environment) {
+        self.environment = environment
     }
 }

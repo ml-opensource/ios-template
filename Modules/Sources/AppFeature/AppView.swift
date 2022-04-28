@@ -21,7 +21,7 @@ public struct AppView: View {
     public var body: some View {
         IfLet($viewModel.route) { $route in
             Switch($route) {
-                CaseLet(/AppViewModel.Route.dashboard) { $vm in
+                CaseLet(/AppViewModel.Route.main) { $vm in
                     NavigationView {
                        Text("Main")
                             .transition(

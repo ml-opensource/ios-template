@@ -29,7 +29,7 @@ extension APIClient {
         public var configKey: String
     }
 }
-
+// MARK: For passing api environments as EnvironmentValues for changing api at runtime on developerscreen
 private struct APIEnvironmentsKey: EnvironmentKey {
     static let defaultValue: [APIClient.APIEnvironment] = []
 }
