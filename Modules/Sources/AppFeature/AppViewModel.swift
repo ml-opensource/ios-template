@@ -53,16 +53,16 @@ public class AppViewModel: ObservableObject {
 
        
     }
-
+    
     func onAppear() {
-        if let tokens = environment.persistenceClient.tokens.load(),
-            tokens.refreshToken.expiresAt > environment.date()
-        {
+        if
+            let tokens = environment.persistenceClient.tokens.load(),
+            tokens.refreshToken.expiresAt > environment.date() {
             showMain()
         } else {
             showLogin()
         }
-
+        
     }
 
     func showLogin() {
