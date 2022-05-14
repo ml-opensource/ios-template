@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "AppFeature", targets: ["AppFeature"]),
         .library(name: "AppVersion", targets: ["AppVersion"]),
         .library(name: "Localizations", targets: ["Localizations"]),
-        .library(name: "Login", targets: ["Login"]),
+        .library(name: "LoginFeature", targets: ["LoginFeature"]),
         .library(name: "Model", targets: ["Model"]),
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
@@ -53,7 +53,7 @@ let package = Package(
         .target(
             name: "AppFeature",
             dependencies: [
-                "APIClient", "Login", "NetworkClient",
+                "APIClient", "LoginFeature", "NetworkClient",
                 "PersistenceClient",
                 .product(name: "CombineSchedulers", package: "combine-schedulers"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
@@ -68,8 +68,8 @@ let package = Package(
             ],
             resources: []
         ),
-       .target(
-            name: "Login",
+        .target(
+            name: "LoginFeature",
             dependencies: [
                 "APIClient", "AppVersion", "Localizations", "Model", "Style",
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
@@ -77,9 +77,9 @@ let package = Package(
             resources: []
         ),
         .testTarget(
-            name: "LoginTests",
+            name: "LoginFeatureTests",
             dependencies: [
-                "Login", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                "LoginFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
             ]),
         .target(
             name: "Localizations",

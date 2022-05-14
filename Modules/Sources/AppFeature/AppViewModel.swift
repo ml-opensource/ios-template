@@ -11,7 +11,7 @@ import Combine
 import CombineSchedulers
 import Foundation
 import Localizations
-import Login
+import LoginFeature
 import Model
 import NetworkClient
 import PersistenceClient

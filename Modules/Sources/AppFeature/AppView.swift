@@ -5,7 +5,7 @@
 //  Created by Jakob Mygind on 10/12/2021.
 //
 
-import Login
+import LoginFeature
 import Style
 import SwiftUI
 import SwiftUINavigation
