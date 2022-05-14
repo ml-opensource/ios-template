@@ -17,6 +17,7 @@ let package = Package(
         .library(name: "AppVersion", targets: ["AppVersion"]),
         .library(name: "Localizations", targets: ["Localizations"]),
         .library(name: "LoginFeature", targets: ["LoginFeature"]),
+        .library(name: "MainFeature", targets: ["MainFeature"]),
         .library(name: "Model", targets: ["Model"]),
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
@@ -53,7 +54,7 @@ let package = Package(
         .target(
             name: "AppFeature",
             dependencies: [
-                "APIClient", "LoginFeature", "NetworkClient",
+                "APIClient", "LoginFeature", "MainFeature", "NetworkClient",
                 "PersistenceClient",
                 .product(name: "CombineSchedulers", package: "combine-schedulers"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
@@ -85,8 +86,21 @@ let package = Package(
             name: "Localizations",
             dependencies: [.product(name: "NStackSDK", package: "nstack-ios-sdk")],
             exclude: ["SKLocalizations.swift"],
-            resources: [.copy("Localizations_da-DK.json")]),
-
+            resources: [.copy("Localizations_da-DK.json")]
+        ),
+        .target(
+            name: "MainFeature",
+            dependencies: [
+                "APIClient", "AppVersion", "Localizations", "Model", "Style",
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+            ],
+            resources: []
+        ),
+        .testTarget(
+            name: "MainFeatureTests",
+            dependencies: [
+                "MainFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+            ]),
         .target(
             name: "Model",
             dependencies: [
@@ -107,7 +121,7 @@ let package = Package(
             dependencies: ["Model"],
             resources: []
         ),
-       
+
         .target(
             name: "Style",
             dependencies: [.product(name: "SwiftUINavigation", package: "swiftui-navigation")],

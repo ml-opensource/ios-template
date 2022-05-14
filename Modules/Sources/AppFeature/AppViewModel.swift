@@ -12,6 +12,7 @@ import CombineSchedulers
 import Foundation
 import Localizations
 import LoginFeature
+import MainFeature
 import Model
 import NetworkClient
 import PersistenceClient
@@ -90,16 +91,5 @@ public class AppViewModel: ObservableObject {
         route = .main(
             .init(environment: .init(mainQueue: environment.mainQueue))
         )
-    }
-}
-
-#warning("Just for demo purposes, this would live in a feature module with the MainView and such")
-public class MainViewModel: ObservableObject {
-    public struct Environment {
-        var mainQueue: AnySchedulerOf<DispatchQueue>
-    }
-    let environment: Environment
-    public init(environment: Environment) {
-        self.environment = environment
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import LoginFeature
+import MainFeature
 import Style
 import SwiftUI
 import SwiftUINavigation
@@ -23,7 +24,7 @@ public struct AppView: View {
             Switch($route) {
                 CaseLet(/AppViewModel.Route.main) { $vm in
                     NavigationView {
-                       Text("Main")
+                        MainView(viewModel: vm)
                             .transition(
                                 .asymmetric(
                                     insertion: .move(edge: .trailing),
