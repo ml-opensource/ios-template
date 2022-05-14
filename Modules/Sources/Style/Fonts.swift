@@ -74,16 +74,15 @@ extension UIFont {
 #if DEBUG
     struct Font_Previews: PreviewProvider {
         static var previews: some View {
-            registerFonts()
-            return VStack {
+            VStack {
                 ForEach(Font.SemanticName.allCases, id: \.self) {
                     Text("Word").font($0)
                         .padding(12)
                         .background(Color.green)
 
                 }
-
             }
+            .registerFonts()
         }
     }
 #endif

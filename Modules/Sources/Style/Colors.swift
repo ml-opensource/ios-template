@@ -8,10 +8,18 @@
 import Foundation
 import SwiftUI
 
-// class Colors {}
 extension Color {
-    public static let base1 = Color("Base1", bundle: .module)
+    public static let base1 = color("Base1")
+    public static let base2 = color("Base2")
+    public static let base3 = color("Base3")
+    public static let baseGreen50 = color("BaseGreen50")
+    public static let baseOrange50 = color("BaseOrange50")
+}
 
+extension Color {
+    fileprivate static func color(_ name: String) -> Color {
+        Color(name, bundle: .styleBundle)
+    }
 }
 
 extension UIColor {
@@ -27,14 +35,20 @@ extension UIColor {
 struct Colors_Previews: PreviewProvider {
 
     static let colors = [
-        Color.base1
+        Color.base1,
+        Color.base2,
+        Color.base3,
+        Color.baseGreen50,
+        Color.baseOrange50,
     ]
     static var previews: some View {
-        LazyHGrid(rows: [GridItem(.fixed(50)), GridItem(.fixed(50)), GridItem(.fixed(50))]) {
-            ForEach(Array(0..<colors.count), id: \.self) {
-                Circle().fill(colors[$0]).frame(width: 50, height: 50, alignment: .center)
+        Color.gray.overlay(
+            LazyHGrid(rows: [GridItem(.fixed(50)), GridItem(.fixed(50)), GridItem(.fixed(50))]) {
+                ForEach(Array(0..<colors.count), id: \.self) {
+                    Circle().fill(colors[$0]).frame(width: 50, height: 50, alignment: .center)
+                }
             }
-        }
-
+        )
+        .ignoresSafeArea()
     }
 }

@@ -87,3 +87,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window!.makeKeyAndVisible()
     }
 }
+
+// MARK: - Dependencies setup
+
+extension SceneDelegate {
+    fileprivate func registerFonts() {
+        CustomFonts.registerCustomFonts()
+    }
+}

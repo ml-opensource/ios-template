@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "APIClientLive", targets: ["APIClientLive"]),
         .library(name: "AppFeature", targets: ["AppFeature"]),
         .library(name: "AppVersion", targets: ["AppVersion"]),
+        .library(name: "Helpers", targets: ["Helpers"]),
         .library(name: "Localizations", targets: ["Localizations"]),
         .library(name: "LoginFeature", targets: ["LoginFeature"]),
         .library(name: "MainFeature", targets: ["MainFeature"]),
@@ -70,9 +71,16 @@ let package = Package(
             resources: []
         ),
         .target(
+            name: "Helpers",
+            dependencies: [],
+            resources: []
+        ),
+        .target(
             name: "LoginFeature",
             dependencies: [
-                "APIClient", "AppVersion", "Localizations", "Model", "Style",
+                "APIClient", "AppVersion",
+                .product(name: "CombineSchedulers", package: "combine-schedulers"), "Localizations",
+                "Model", "Style",
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
             ],
             resources: []
@@ -124,7 +132,9 @@ let package = Package(
 
         .target(
             name: "Style",
-            dependencies: [.product(name: "SwiftUINavigation", package: "swiftui-navigation")],
+            dependencies: [
+                "Helpers", .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
+            ],
             resources: [.process("Colors.xcassets"), .process("Fonts")]),
     ]
 )

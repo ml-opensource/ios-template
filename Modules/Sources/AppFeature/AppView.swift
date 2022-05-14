@@ -51,3 +51,44 @@ public struct AppView: View {
         .onAppear(perform: viewModel.onAppear)
     }
 }
+
+#if DEBUG
+    import Localizations
+
+    struct AppView_Previews: PreviewProvider {
+        static var localizations: ObservableLocalizations = .init(.bundled)
+
+        static var previews: some View {
+            AppView(
+                viewModel: .init(
+                    environment: .mock,
+                    route: .main(
+                        .init(environment: .init(mainQueue: .immediate)))
+                )
+            )
+            .previewDisplayName("Main")
+
+            AppView(
+                viewModel: .init(
+                    environment: .mock,
+                    route: .login(
+                        .init(
+                            onSuccess: { _, _ in },
+                            environment: .init(
+                                mainQueue: .immediate,
+                                apiClient: .mock,
+                                date: Date.init,
+                                calendar: .init(identifier: .gregorian),
+                                localizations: .init(.bundled),
+                                appVersion: .noop
+                            )
+                        )
+                    )
+                )
+            )
+            .registerFonts()
+            .environmentObject(ObservableLocalizations.init(.bundled))
+            .previewDisplayName("Login")
+        }
+    }
+#endif
