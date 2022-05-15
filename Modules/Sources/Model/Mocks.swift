@@ -33,6 +33,35 @@ extension Product {
             )!
         ]
     )
+
+    public static func mocks(amount: Int) -> [Product] {
+        var products: [Product] = []
+        for index in 0..<amount {
+            products.append(
+                .init(
+                    id: .init(rawValue: index),
+                    name: "MockCroissant",
+                    description: "MockCroissant something description",
+                    price: Double.random(in: 61.5...615),
+                    netContentValue: "90",
+                    netContentMeasurementUnitCode: "GR",
+                    thumbnailImageUrls: [
+                        URL(
+                            string:
+                                "https://live.nemligstatic.com/scommerce/images/croissant.jpg?i=CJRwsn-w/5045129&w=623&h=623&mode=pad"
+                        )!
+                    ],
+                    standardImageUrls: [
+                        URL(
+                            string:
+                                "https://live.nemligstatic.com/scommerce/images/croissant.jpg?i=CJRwsn-w/5045129&w=623&h=623&mode=pad"
+                        )!
+                    ]
+                )
+            )
+        }
+        return products
+    }
 }
 
 extension Array where Element == Product {
@@ -80,7 +109,7 @@ extension Array where Element == Order {
     public static func mocks(_ count: Int) -> Self {
         guard count > 0 else { return [] }
         return (1...count).map { n in
-            
+
             var mock = Order.mock
             mock.deliveryDate += Double(n - 1) * 86400
             return mock

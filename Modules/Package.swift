@@ -104,7 +104,7 @@ let package = Package(
                 .product(name: "CombineSchedulers", package: "combine-schedulers"),
                 .product(name: "IdentifiedCollections", package: "swift-identified-collections"),
                 "Localizations",
-                "Model", "Style",
+                "Model", "ProductFeature", "Style",
                 .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
             ],

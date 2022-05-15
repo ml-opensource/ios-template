@@ -17,7 +17,7 @@ public class AppViewModel: ObservableObject {
 
     public enum Route {
         case login(LoginViewModel)
-        case main(MainViewModel)
+        case main(MainFeatureViewModel)
     }
     @Published var route: Route?
 

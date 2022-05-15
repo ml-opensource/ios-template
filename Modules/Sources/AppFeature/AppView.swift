@@ -24,7 +24,7 @@ public struct AppView: View {
             Switch($route) {
                 CaseLet(/AppViewModel.Route.main) { $vm in
                     NavigationView {
-                        MainView(viewModel: vm)
+                        MainFeatureView(viewModel: vm)
                             .transition(
                                 .asymmetric(
                                     insertion: .move(edge: .trailing),
