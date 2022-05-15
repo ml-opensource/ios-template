@@ -5,19 +5,10 @@
 //  Created by Jakob Mygind on 10/12/2021.
 //
 
-import APIClient
-import AppVersion
 import Combine
-import CombineSchedulers
-import Foundation
-import Localizations
 import LoginFeature
 import MainFeature
-import Model
-import NetworkClient
-import PersistenceClient
 import SwiftUI
-import UIKit
 
 public class AppViewModel: ObservableObject {
 

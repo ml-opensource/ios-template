@@ -9,11 +9,9 @@ import APIClientLive
 import AppFeature
 import Combine
 import Localizations
-import Model
 import PersistenceClient
 import Style
 import SwiftUI
-import UIKit
 
 @main
 final class AppDelegate: NSObject, UIApplicationDelegate {
