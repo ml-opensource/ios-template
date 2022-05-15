@@ -47,8 +47,10 @@ public struct AppView: View {
                 }
             }
             .banner(unwrapping: viewModel.bannerState)
+        } else: {
+            ProgressView()
         }
-        .onAppear(perform: viewModel.onAppear)
+        // .onAppear(perform: viewModel.onAppear)
     }
 }
 
@@ -59,6 +61,9 @@ public struct AppView: View {
         static var localizations: ObservableLocalizations = .init(.bundled)
 
         static var previews: some View {
+            AppView(viewModel: .init(environment: .mock))
+                .previewDisplayName("No Route")
+
             AppView(
                 viewModel: .init(
                     environment: .mock,
@@ -66,22 +71,26 @@ public struct AppView: View {
                         .init(environment: .init(mainQueue: .immediate)))
                 )
             )
+            .registerFonts()
+            .environmentObject(ObservableLocalizations.init(.bundled))
             .previewDisplayName("Main")
 
+            let environment: AppEnvironment = .mock
             AppView(
                 viewModel: .init(
-                    environment: .mock,
+                    environment: environment,
                     route: .login(
                         .init(
                             onSuccess: { _, _ in },
-                            environment: .init(
-                                mainQueue: .immediate,
-                                apiClient: .mock,
-                                date: Date.init,
-                                calendar: .init(identifier: .gregorian),
-                                localizations: .init(.bundled),
-                                appVersion: .noop
-                            )
+                            environment:
+                                LoginEnvironment(
+                                    mainQueue: environment.mainQueue,
+                                    apiClient: environment.apiClient,
+                                    date: environment.date,
+                                    calendar: environment.calendar,
+                                    localizations: environment.localizations,
+                                    appVersion: environment.appVersion
+                                )
                         )
                     )
                 )
