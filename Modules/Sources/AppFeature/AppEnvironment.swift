@@ -9,12 +9,10 @@ import APIClient
 import AppVersion
 import Combine
 import CombineSchedulers
-import Foundation
 import Localizations
 import Model
 import NetworkClient
 import PersistenceClient
-import UIKit
 import XCTestDynamicOverlay
 
 /// All encompassing environment

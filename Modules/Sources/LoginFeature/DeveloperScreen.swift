@@ -1,6 +1,4 @@
 import APIClient
-import Foundation
-import Model
 import SwiftUI
 
 struct DeveloperScreen: View {
