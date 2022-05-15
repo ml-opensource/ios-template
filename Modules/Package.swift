@@ -22,6 +22,7 @@ let package = Package(
         .library(name: "Model", targets: ["Model"]),
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
+        .library(name: "ProductFeature", targets: ["ProductFeature"]),
         .library(name: "Style", targets: ["Style"]),
     ],
     dependencies: [
@@ -99,7 +100,12 @@ let package = Package(
         .target(
             name: "MainFeature",
             dependencies: [
-                "APIClient", "AppVersion", "Localizations", "Model", "Style",
+                "APIClient", "AppVersion",
+                .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                .product(name: "IdentifiedCollections", package: "swift-identified-collections"),
+                "Localizations",
+                "Model", "Style",
+                .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
             ],
             resources: []
@@ -108,6 +114,24 @@ let package = Package(
             name: "MainFeatureTests",
             dependencies: [
                 "MainFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+            ]
+        ),
+        .target(
+            name: "ProductFeature",
+            dependencies: [
+                .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                .product(name: "IdentifiedCollections", package: "swift-identified-collections"),
+                "Localizations", "Model", "Style",
+                .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+            ],
+            resources: []
+        ),
+        .testTarget(
+            name: "ProductFeatureTests",
+            dependencies: [
+                "ProductFeature",
+                .product(name: "CombineSchedulers", package: "combine-schedulers"),
             ]),
         .target(
             name: "Model",
