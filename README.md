@@ -20,3 +20,4 @@ Make sure you have familiarized yourself somewhat with the concepts in the MVVM 
 9. Insert your own fonts in /Fonts and Fonts.swift in Style bundle
 10. Fix font names in RegisterFonts.swift
 11. Drop your own shared assets in Assets.xcassets and Assets.swift in Style bundle
+12. Delete the `.git` folder and run `git init`, so you're using a new repo for your project and not the template repo
