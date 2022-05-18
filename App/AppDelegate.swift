@@ -9,11 +9,9 @@ import APIClientLive
 import AppFeature
 import Combine
 import Localizations
-import Model
 import PersistenceClient
 import Style
 import SwiftUI
-import UIKit
 
 @main
 final class AppDelegate: NSObject, UIApplicationDelegate {
@@ -33,21 +31,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var tokenCancellable: AnyCancellable?
 
     func scene(
-        _ scene: UIScene, willConnectTo session: UISceneSession,
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let scene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: scene)
 
-        if !Style.registerFonts() {
-            fatalError()
-        }
+        self.setupNStack()
+        self.registerFonts()
+        self.startAppView()
+    }
+}
+
+// MARK: - Dependencies setup
+
+extension SceneDelegate {
+
+    /// Allows using project specific fonts int the same way you use any of the iOS-provided fonts.
+    /// Custom fonts should be located on the `Style`.
+    fileprivate func registerFonts() {
+        CustomFonts.registerCustomFonts()
+    }
+
+    /// Handles setup of [NStack](https://nstack.io) services.
+    /// This example demonstrates [Localization](https://nstack-io.github.io/docs/docs/features/localize.html) service activation.
+    fileprivate func setupNStack() {
         localizations = startNStackSDK(
             appId: <#appID#>,
             restAPIKey: <#restAPIKey#>
         )
+    }
 
-       
+    /// Defines content view of the window assigned to the scene with the required dependencies.
+    /// This is the entry point for the app which defines the source of truth for related environment settings.
+    fileprivate func startAppView() {
         let baseURL = Configuration.API.baseURL
 
         let persistenceClient = PersistenceClient.live(keyPrefix: Bundle.main.bundleIdentifier!)
@@ -83,7 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .environment(\.apiEnvironments, apiEnvironments)
         #endif
 
-        self.window!.rootViewController = UIHostingController(rootView: appView)
-        self.window!.makeKeyAndVisible()
+        self.window?.rootViewController = UIHostingController(rootView: appView)
+        self.window?.makeKeyAndVisible()
     }
 }

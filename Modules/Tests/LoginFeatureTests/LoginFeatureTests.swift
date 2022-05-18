@@ -8,8 +8,8 @@
 import Foundation
 import XCTest
 
-@testable import Login
+@testable import LoginFeature
 
-final class LoginTests: XCTestCase {
+final class LoginFeatureTests: XCTestCase {
 
 }

@@ -1,61 +1,41 @@
-import UIKit
+import Helpers
+import SwiftUI
 
-class FontsBundle {}
-@discardableResult
-public func registerFonts() -> Bool {
-    [
-        UIFont.registerFont(
-            bundles: .findBundle(
-                thisBundleName: "Modules_Style", classInThisBundle: FontsBundle.self),
-            fontName: "KelptA3-Bold", fontExtension: "otf"),
-        UIFont.registerFont(
-            bundles: .findBundle(
-                thisBundleName: "Modules_Style", classInThisBundle: FontsBundle.self),
-            fontName: "KelptA3-Regular", fontExtension: "otf"),
-        UIFont.registerFont(
-            bundles: .findBundle(
-                thisBundleName: "Modules_Style", classInThisBundle: FontsBundle.self),
-            fontName: "KelptA3-Medium", fontExtension: "otf"),
+public enum CustomFonts {
+    static let fontNames = [
+        "KelptA3-Bold",
+        "KelptA3-Regular",
+        "KelptA3-Medium",
     ]
-    .allSatisfy { $0 }
+
+    public static func registerCustomFonts() {
+        for font in fontNames {
+            guard let url = Bundle.styleBundle.url(forResource: font, withExtension: "otf") else {
+                fatalError("Couldn't find font: \(font)!")
+            }
+            CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+        }
+    }
 }
 
-extension UIFont {
+extension View {
 
-    static func registerFont(bundles: Bundle..., fontName: String, fontExtension: String) -> Bool {
-        for bundle in bundles {
-            if registerFont(bundle: bundle, fontName: fontName, fontExtension: fontExtension) {
-                return true
-            }
-        }
-        return false
+    /// Attach this to any Xcode Preview's view to have custom fonts displayed
+    /// Note: Not needed for the actual app
+    public func registerFonts() -> some View {
+        CustomFonts.registerCustomFonts()
+        return self
     }
-    static func registerFont(bundle: Bundle, fontName: String, fontExtension: String) -> Bool {
-        guard let fontURL = bundle.url(forResource: fontName, withExtension: fontExtension) else {
-            print("Couldn't find font \(fontName)")
-            return false
-        }
-        guard let fontDataProvider = CGDataProvider(url: fontURL as CFURL) else {
-            print("Couldn't load data from the font \(fontName)")
-            return false
-        }
-        guard let font = CGFont(fontDataProvider) else {
-            print("Couldn't create font from data")
-            return false
-        }
+}
 
-        var error: Unmanaged<CFError>?
-        let success = CTFontManagerRegisterGraphicsFont(font, &error)
-        guard success else {
-            print(
-                """
-                Error registering font: \(fontName). Maybe it was already registered.\
-                \(error.map { " \($0.takeUnretainedValue().localizedDescription)" } ?? "")
-                """
-            )
-            return true
-        }
+// MARK: - getting current bundle to use in previews
+extension Foundation.Bundle {
+    private class CurrentBundleFinder {}
 
-        return true
-    }
+    static var styleBundle: Bundle = {
+        .getCurrentBundle(
+            bundleName: "Modules_Style",
+            bundleFinder: CurrentBundleFinder.self
+        )
+    }()
 }

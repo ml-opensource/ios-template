@@ -15,8 +15,10 @@ let package = Package(
         .library(name: "APIClientLive", targets: ["APIClientLive"]),
         .library(name: "AppFeature", targets: ["AppFeature"]),
         .library(name: "AppVersion", targets: ["AppVersion"]),
+        .library(name: "Helpers", targets: ["Helpers"]),
         .library(name: "Localizations", targets: ["Localizations"]),
-        .library(name: "Login", targets: ["Login"]),
+        .library(name: "LoginFeature", targets: ["LoginFeature"]),
+        .library(name: "MainFeature", targets: ["MainFeature"]),
         .library(name: "Model", targets: ["Model"]),
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
@@ -53,7 +55,7 @@ let package = Package(
         .target(
             name: "AppFeature",
             dependencies: [
-                "APIClient", "Login", "NetworkClient",
+                "APIClient", "LoginFeature", "MainFeature", "NetworkClient",
                 "PersistenceClient",
                 .product(name: "CombineSchedulers", package: "combine-schedulers"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
@@ -68,8 +70,34 @@ let package = Package(
             ],
             resources: []
         ),
-       .target(
-            name: "Login",
+        .target(
+            name: "Helpers",
+            dependencies: [],
+            resources: []
+        ),
+        .target(
+            name: "LoginFeature",
+            dependencies: [
+                "APIClient", "AppVersion",
+                .product(name: "CombineSchedulers", package: "combine-schedulers"), "Localizations",
+                "Model", "Style",
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+            ],
+            resources: []
+        ),
+        .testTarget(
+            name: "LoginFeatureTests",
+            dependencies: [
+                "LoginFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+            ]),
+        .target(
+            name: "Localizations",
+            dependencies: [.product(name: "NStackSDK", package: "nstack-ios-sdk")],
+            exclude: ["SKLocalizations.swift"],
+            resources: [.copy("Localizations_da-DK.json")]
+        ),
+        .target(
+            name: "MainFeature",
             dependencies: [
                 "APIClient", "AppVersion", "Localizations", "Model", "Style",
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
@@ -77,16 +105,10 @@ let package = Package(
             resources: []
         ),
         .testTarget(
-            name: "LoginTests",
+            name: "MainFeatureTests",
             dependencies: [
-                "Login", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                "MainFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
             ]),
-        .target(
-            name: "Localizations",
-            dependencies: [.product(name: "NStackSDK", package: "nstack-ios-sdk")],
-            exclude: ["SKLocalizations.swift"],
-            resources: [.copy("Localizations_da-DK.json")]),
-
         .target(
             name: "Model",
             dependencies: [
@@ -107,10 +129,12 @@ let package = Package(
             dependencies: ["Model"],
             resources: []
         ),
-       
+
         .target(
             name: "Style",
-            dependencies: [.product(name: "SwiftUINavigation", package: "swiftui-navigation")],
+            dependencies: [
+                "Helpers", .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
+            ],
             resources: [.process("Colors.xcassets"), .process("Fonts")]),
     ]
 )

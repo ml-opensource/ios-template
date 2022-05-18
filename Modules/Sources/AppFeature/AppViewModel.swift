@@ -5,18 +5,10 @@
 //  Created by Jakob Mygind on 10/12/2021.
 //
 
-import APIClient
-import AppVersion
 import Combine
-import CombineSchedulers
-import Foundation
-import Localizations
-import Login
-import Model
-import NetworkClient
-import PersistenceClient
+import LoginFeature
+import MainFeature
 import SwiftUI
-import UIKit
 
 public class AppViewModel: ObservableObject {
 
@@ -90,16 +82,5 @@ public class AppViewModel: ObservableObject {
         route = .main(
             .init(environment: .init(mainQueue: environment.mainQueue))
         )
-    }
-}
-
-#warning("Just for demo purposes, this would live in a feature module with the MainView and such")
-public class MainViewModel: ObservableObject {
-    public struct Environment {
-        var mainQueue: AnySchedulerOf<DispatchQueue>
-    }
-    let environment: Environment
-    public init(environment: Environment) {
-        self.environment = environment
     }
 }

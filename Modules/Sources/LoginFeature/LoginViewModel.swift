@@ -6,14 +6,9 @@
 //
 
 import APIClient
-import AppVersion
 import Combine
-import CombineSchedulers
-import Localizations
 import Model
 import Style
-import SwiftUI
-import SwiftUINavigation
 
 public class LoginViewModel: ObservableObject {
 

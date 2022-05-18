@@ -5,7 +5,8 @@
 //  Created by Jakob Mygind on 10/12/2021.
 //
 
-import Login
+import LoginFeature
+import MainFeature
 import Style
 import SwiftUI
 import SwiftUINavigation
@@ -23,7 +24,7 @@ public struct AppView: View {
             Switch($route) {
                 CaseLet(/AppViewModel.Route.main) { $vm in
                     NavigationView {
-                       Text("Main")
+                        MainView(viewModel: vm)
                             .transition(
                                 .asymmetric(
                                     insertion: .move(edge: .trailing),
@@ -46,7 +47,57 @@ public struct AppView: View {
                 }
             }
             .banner(unwrapping: viewModel.bannerState)
+        } else: {
+            ProgressView()
         }
-        .onAppear(perform: viewModel.onAppear)
+        // .onAppear(perform: viewModel.onAppear)
     }
 }
+
+#if DEBUG
+    import Localizations
+
+    struct AppView_Previews: PreviewProvider {
+        static var localizations: ObservableLocalizations = .init(.bundled)
+
+        static var previews: some View {
+            AppView(viewModel: .init(environment: .mock))
+                .previewDisplayName("No Route")
+
+            AppView(
+                viewModel: .init(
+                    environment: .mock,
+                    route: .main(
+                        .init(environment: .init(mainQueue: .immediate)))
+                )
+            )
+            .registerFonts()
+            .environmentObject(ObservableLocalizations.init(.bundled))
+            .previewDisplayName("Main")
+
+            let environment: AppEnvironment = .mock
+            AppView(
+                viewModel: .init(
+                    environment: environment,
+                    route: .login(
+                        .init(
+                            onSuccess: { _, _ in },
+                            environment:
+                                LoginEnvironment(
+                                    mainQueue: environment.mainQueue,
+                                    apiClient: environment.apiClient,
+                                    date: environment.date,
+                                    calendar: environment.calendar,
+                                    localizations: environment.localizations,
+                                    appVersion: environment.appVersion
+                                )
+                        )
+                    )
+                )
+            )
+            .registerFonts()
+            .environmentObject(ObservableLocalizations.init(.bundled))
+            .previewDisplayName("Login")
+        }
+    }
+#endif
