@@ -311,8 +311,6 @@
 				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -468,8 +466,6 @@
 				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -499,8 +495,6 @@
 				DEVELOPMENT_TEAM = HW27H6H98R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
