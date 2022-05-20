@@ -93,8 +93,14 @@ let package = Package(
         .target(
             name: "Localizations",
             dependencies: [.product(name: "NStackSDK", package: "nstack-ios-sdk")],
-            exclude: ["SKLocalizations.swift"],
-            resources: [.copy("Localizations_da-DK.json")]
+            exclude: [
+                "SKLocalizations.swift",
+                "NStack/NStack.plist",
+                "NStack/nstack-localizations-generator.bundle"
+            ],
+            resources: [
+                .copy("Localizations_da-DK.json")
+            ]
         ),
         .target(
             name: "MainFeature",

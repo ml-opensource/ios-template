@@ -11,7 +11,6 @@
 		BD2B080727833D070066D559 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = BD2B080627833D070066D559 /* AppFeature */; };
 		BD2FEFDB2768CA5C00E80BBC /* APIClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = BD2FEFDA2768CA5C00E80BBC /* APIClientLive */; };
 		BD3196EC2796EC1F0077C271 /* ProjectConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3196EB2796CC900077C271 /* ProjectConfig.swift */; };
-		BDBB62D4281A677300388A3A /* NStack.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDBB62D3281A677300388A3A /* NStack.plist */; };
 		BDC6D5E9279183590028D211 /* PersistenceClient in Frameworks */ = {isa = PBXBuildFile; productRef = BDC6D5E8279183590028D211 /* PersistenceClient */; };
 		BDCA8DA12742611B00195B05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCA8DA02742611B00195B05 /* AppDelegate.swift */; };
 		BDCA8DAA2742611D00195B05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDCA8DA92742611D00195B05 /* Assets.xcassets */; };
@@ -35,7 +34,6 @@
 		BD3196E92796CB440077C271 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		BD3196EA2796CB690077C271 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		BD3196EB2796CC900077C271 /* ProjectConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectConfig.swift; sourceTree = "<group>"; };
-		BDBB62D3281A677300388A3A /* NStack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NStack.plist; sourceTree = "<group>"; };
 		BDCA8D9D2742611B00195B05 /* PROJECT_NAME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROJECT_NAME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDCA8DA02742611B00195B05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDCA8DA92742611D00195B05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				BD3196E92796CB440077C271 /* Production.xcconfig */,
 				BD3196EA2796CB690077C271 /* Test.xcconfig */,
 				BD3196EB2796CC900077C271 /* ProjectConfig.swift */,
-				BDBB62D3281A677300388A3A /* NStack.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -168,7 +165,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDBB62D4281A677300388A3A /* NStack.plist in Resources */,
 				BDCA8DAD2742611D00195B05 /* LaunchScreen.storyboard in Resources */,
 				BDCA8DAA2742611D00195B05 /* Assets.xcassets in Resources */,
 			);
@@ -193,7 +189,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nTL_GEN_PATH=\"${SRCROOT}/nstack-localizations-generator.bundle\"\nTL_CONFIG_PATH=\"${SRCROOT}/App/NStack.plist\"\nTL_OUT_PATH=\"${SRCROOT}/Modules/Sources/Localizations\"\n\n# Check if doing a clean build\nif test -f \"${DERIVED_FILE_DIR}/LocalizationsGenerator.lock\"; then\necho \"Not clean build, won't fetch localizations this time.\"\nelse\necho \"Clean build. Getting localizations...\"\n\"${TL_GEN_PATH}/Contents/MacOS/nstack-localizations-generator\" -plist \"${TL_CONFIG_PATH}\" -output \"${TL_OUT_PATH}\" -standalone\nmkdir -p \"${DERIVED_FILE_DIR}\"\ntouch \"${DERIVED_FILE_DIR}/LocalizationsGenerator.lock\" # create lock file\nfi\n\n";
+			shellScript = "\nTL_GEN_PATH=\"${SRCROOT}/Modules/Sources/Localizations/NStack/nstack-localizations-generator.bundle\"\nTL_CONFIG_PATH=\"${SRCROOT}/Modules/Sources/Localizations/NStack/NStack.plist\"\nTL_OUT_PATH=\"${SRCROOT}/Modules/Sources/Localizations\"\n\n# Check if doing a clean build\n#if test -f \"${DERIVED_FILE_DIR}/LocalizationsGenerator.lock\"; then\n#echo \"Not clean build, won't fetch localizations this time.\"\n#else\necho \"Clean build. Getting localizations...\"\n\"${TL_GEN_PATH}/Contents/MacOS/nstack-localizations-generator\" -plist \"${TL_CONFIG_PATH}\" -output \"${TL_OUT_PATH}\" -standalone\nmkdir -p \"${DERIVED_FILE_DIR}\"\ntouch \"${DERIVED_FILE_DIR}/LocalizationsGenerator.lock\" # create lock file\n#fi\n\n";
 		};
 		BD2B080D2784827F0066D559 /* swift-format */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -306,9 +302,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = HW27H6H98R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
@@ -463,9 +459,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = HW27H6H98R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
@@ -482,6 +478,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monstar-lab.template-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -494,9 +491,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
-				DEVELOPMENT_TEAM = HW27H6H98R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Vi skal bruge Bluetooth for at kunne printe";
