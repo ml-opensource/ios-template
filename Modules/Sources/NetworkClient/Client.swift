@@ -5,7 +5,6 @@
 //  Created by Jakob Mygind on 04/01/2022.
 //
 
-import Combine
 import Foundation
 import Network
 import XCTestDynamicOverlay
@@ -17,7 +16,7 @@ public struct NetworkClient {
         public let status: NWPath.Status
     }
 
-    public var pathUpdatePublisher: AnyPublisher<NetworkPath, Never>
+    public var pathUpdateStream: () -> AsyncStream<NetworkPath>
 }
 
 extension NetworkClient.NetworkPath {
@@ -26,53 +25,57 @@ extension NetworkClient.NetworkPath {
     }
 }
 
+#if DEBUG
 extension NetworkClient {
-    public static let failing = Self.init(pathUpdatePublisher: .failing())
+    public static let failing = Self(
+        pathUpdateStream: XCTUnimplemented("\(Self.self).pathUpdateStream method not implemented.")
+    )
+    
     public static let noop = Self.init(
-        pathUpdatePublisher: Empty(completeImmediately: false).eraseToAnyPublisher())
+        pathUpdateStream: { .init(unfolding: { .none }) }
+    )
     public static let happy = Self.init(
-        pathUpdatePublisher: .init(value: .init(status: .satisfied)))
+        pathUpdateStream: {
+            .init { continuation in
+                continuation.yield(.init(status: .satisfied))
+                continuation.finish()
+            }
+        }
+    )
     public static let unhappy = Self.init(
-        pathUpdatePublisher: .init(value: .init(status: .unsatisfied)))
+        pathUpdateStream: {
+            .init { continuation in
+                continuation.yield(.init(status: .unsatisfied))
+                continuation.finish()
+            }
+        }
+    )
 
-    public static var flakey: Self {
-
+    private static var timer: Timer!
+    
+    public static func flakey(
+        firstStatus: NWPath.Status = .unsatisfied,
+        timeInterval: TimeInterval = 3
+    ) -> Self {
         Self(
-            pathUpdatePublisher: Timer.publish(
-                every: 3, tolerance: nil, on: .main, in: .default, options: nil
-            )
-            .autoconnect()
-            .scan(
-                NWPath.Status.satisfied,
-                { status, _ in
-                    status == .satisfied ? .unsatisfied : .satisfied
+            pathUpdateStream: {
+                AsyncStream { continuation in
+                    var currentStatus = firstStatus
+                    continuation.yield(.init(status: firstStatus))
+                    timer = Timer(
+                        timeInterval: timeInterval,
+                        repeats: true
+                    ) { _ in
+                        currentStatus = currentStatus == .satisfied ? .unsatisfied : .satisfied
+                        continuation.yield(.init(status: currentStatus))
+                    }
+                    continuation.onTermination = { _ in
+                        timer.invalidate()
+                    }
+                    RunLoop.main.add(timer, forMode: .default)
                 }
-            )
-            .map(NetworkClient.NetworkPath.init(status:))
-            .eraseToAnyPublisher()
+            }
         )
     }
 }
-
-extension AnyPublisher {
-    fileprivate static func failing(_ message: String = "") -> Self {
-        .fireAndForget {
-            XCTFail("\(message.isEmpty ? "" : "\(message) - ")A failing effect ran.")
-        }
-    }
-
-    fileprivate init(value: Output) {
-        self = Just(value).setFailureType(to: Failure.self).eraseToAnyPublisher()
-    }
-
-    fileprivate init(_ error: Failure) {
-        self = Fail(error: error).eraseToAnyPublisher()
-    }
-
-    fileprivate static func fireAndForget(_ work: @escaping () -> Void) -> Self {
-        Deferred { () -> Empty<Output, Failure> in
-            work()
-            return Empty(completeImmediately: true)
-        }.eraseToAnyPublisher()
-    }
-}
+#endif

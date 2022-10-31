@@ -12,19 +12,20 @@ import Network
 extension NetworkClient {
     public static func live(queue: DispatchQueue) -> Self {
 
-        let subject = PassthroughSubject<NWPath, Never>()
         let monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = subject.send(_:)
 
         return Self.init(
-            pathUpdatePublisher:
-                subject
-                .handleEvents(
-                    receiveSubscription: { _ in monitor.start(queue: queue) },
-                    receiveCancel: monitor.cancel
-                )
-                .map(NetworkClient.NetworkPath.init(rawValue:))
-                .eraseToAnyPublisher()
+            pathUpdateStream: {
+                AsyncStream { continuation in
+                    monitor.start(queue: queue)
+                    monitor.pathUpdateHandler = { path in
+                        continuation.yield(.init(rawValue: path))
+                    }
+                    continuation.onTermination = { _ in
+                        monitor.cancel()
+                    }
+                }
+            }
         )
     }
 }
