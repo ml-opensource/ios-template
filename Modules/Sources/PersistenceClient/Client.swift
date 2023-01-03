@@ -10,6 +10,6 @@ import Model
 
 /// Client used for storing data
 public struct PersistenceClient {
-    public var tokens: FileClient<APITokens>
+    public var tokens: FileClient<APITokensEnvelope>
     public var email: FileClient<Username>
 }

@@ -25,7 +25,7 @@ public struct AppEnvironment {
     var localizations: ObservableLocalizations
     var appVersion: AppVersion
     var persistenceClient: PersistenceClient
-    var tokenUpdatePublisher: AnyPublisher<APITokens?, Never>
+    var tokenUpdatePublisher: AnyPublisher<APITokensEnvelope?, Never>
     var networkMonitor: NetworkClient
 
     public init(
@@ -36,7 +36,7 @@ public struct AppEnvironment {
         localizations: ObservableLocalizations,
         appVersion: AppVersion,
         persistenceClient: PersistenceClient,
-        tokenUpdatePublisher: AnyPublisher<APITokens?, Never>,
+        tokenUpdatePublisher: AnyPublisher<APITokensEnvelope?, Never>,
         networkMonitor: NetworkClient
     ) {
         self.mainQueue = mainQueue

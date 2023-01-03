@@ -13,7 +13,7 @@ import Model
 /// The state of tokens can be monitored by subscribing to `tokenUpdatePublisher`, if this outouts nil, it means the user should log in again
 public class AuthenticationHandler {
 
-    public let tokenUpdatePublisher: CurrentValueSubject<APITokens?, Never>
+    public let tokenUpdatePublisher: CurrentValueSubject<APITokensEnvelope?, Never>
     var now: () -> Date = Date.init
     var networkRequestPublisher:
         (URLRequest) -> AnyPublisher<
@@ -22,10 +22,10 @@ public class AuthenticationHandler {
             URLSession.shared.dataTaskPublisher(for: $0).eraseToAnyPublisher()
         }
     private let queue = DispatchQueue(label: "Authenticator.\(UUID().uuidString)")
-    private(set) var refreshPublisher: PassthroughSubject<APITokens, Error>?
+    private(set) var refreshPublisher: PassthroughSubject<APITokensEnvelope, Error>?
 
     private var refreshURL: URL
-    var apiTokens: APITokens? {
+    var apiTokens: APITokensEnvelope? {
         didSet {
             if let apiTokens = apiTokens {
                 refreshPublisher?.send(apiTokens)
@@ -38,7 +38,7 @@ public class AuthenticationHandler {
 
     public init(
         refreshURL: URL,
-        tokens: APITokens?
+        tokens: APITokensEnvelope?
     ) {
         self.apiTokens = tokens
         self.tokenUpdatePublisher = CurrentValueSubject(tokens)
@@ -54,9 +54,9 @@ public class AuthenticationHandler {
             > = {
                 URLSession.shared.dataTaskPublisher(for: $0).eraseToAnyPublisher()
             },
-            refreshPublisher: PassthroughSubject<APITokens, Error>? = nil,
+            refreshPublisher: PassthroughSubject<APITokensEnvelope, Error>? = nil,
             refreshURL: URL,
-            apiTokens: APITokens? = nil
+            apiTokens: APITokensEnvelope? = nil
         ) {
             self.tokenUpdatePublisher = CurrentValueSubject(apiTokens)
             self.now = now
@@ -145,7 +145,7 @@ public class AuthenticationHandler {
     /// Make call to refresh access token
     /// - Parameter refreshToken: refreshtoken to be used
     /// - Returns: A fresh set of tokens
-    private func refreshTokens(using refreshToken: RefreshToken) -> AnyPublisher<APITokens, Error> {
+    private func refreshTokens(using refreshToken: RefreshToken) -> AnyPublisher<APITokensEnvelope, Error> {
         struct Body: Encodable {
             let token: String
         }
@@ -168,7 +168,7 @@ public class AuthenticationHandler {
                     return $0.data
                 }
             }
-            .decode(type: APITokens.self, decoder: decoder)
+            .decode(type: APITokensEnvelope.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
 }

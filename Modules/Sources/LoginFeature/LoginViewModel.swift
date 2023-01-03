@@ -13,7 +13,7 @@ import Style
 public class LoginViewModel: ObservableObject {
 
     var environment: LoginEnvironment
-    var onSuccess: (APITokens, Username) -> Void
+    var onSuccess: (APITokensEnvelope, Username) -> Void
 
     enum Route {
         case alert(AlertState)
@@ -29,7 +29,7 @@ public class LoginViewModel: ObservableObject {
     var cancellables: Set<AnyCancellable> = []
 
     public init(
-        onSuccess: @escaping (APITokens, Username) -> Void,
+        onSuccess: @escaping (APITokensEnvelope, Username) -> Void,
         environment: LoginEnvironment
     ) {
         self.environment = environment

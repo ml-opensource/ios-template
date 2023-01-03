@@ -24,7 +24,7 @@ public struct RefreshTokenEnvelope: Codable, Equatable {
     public var expiresAt: Date
 }
 
-public struct APITokens: Codable, Equatable {
+public struct APITokensEnvelope: Codable, Equatable {
     init(
         token: AccessToken,
         refreshToken: RefreshTokenEnvelope
@@ -37,7 +37,7 @@ public struct APITokens: Codable, Equatable {
     public var refreshToken: RefreshTokenEnvelope
 }
 
-extension APITokens {
+extension APITokensEnvelope {
     public static let mock = Self(
         token: "MockToken",
         refreshToken: .init(token: "MockRefreshToken", expiresAt: .distantFuture))

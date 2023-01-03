@@ -30,7 +30,7 @@ final class APIClientLiveTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
-    lazy var newTokens = APITokens(
+    lazy var newTokens = APITokensEnvelope(
         token: .init(
             rawValue:
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOSIsInRva2VuVHlwZSI6Ik1lcmNoYW50IiwibmJmIjoxNjQyNjgxMzU1LCJleHAiOjE2NDI2ODI1NTUsImlhdCI6MTY0MjY4MTM1NX0.TUt15w5BOJfeekhM4TY0qdCHNlr4qtDIVdh_S6MzwTI"
@@ -50,7 +50,7 @@ final class APIClientLiveTests: XCTestCase {
         let successResponse = HTTPURLResponse(
             url: URL(string: ":")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
         let now = Date.distantFuture
-        var tokens = APITokens.mock
+        var tokens = APITokensEnvelope.mock
 
         tokens.token = .expired
         let networkPublisherSubject = PassthroughSubject<
@@ -102,7 +102,7 @@ final class APIClientLiveTests: XCTestCase {
         let successResponse = HTTPURLResponse(
             url: URL(string: ":")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
         let now = Date.distantFuture
-        var tokens = APITokens.mock
+        var tokens = APITokensEnvelope.mock
 
         tokens.token = .expired
         let networkPublisherSubject = PassthroughSubject<
