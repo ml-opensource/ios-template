@@ -63,12 +63,12 @@ public actor AuthenticationHandlerAsync {
         }
         
         let task = Task { () throws -> APITokensEnvelope in
-            defer { refreshTask = nil }
+            defer { self.refreshTask = nil }
             
             guard let refreshToken = apiTokens?.refreshToken else {
                 throw URLError(.userAuthenticationRequired)
             }
-            let newTokens = try await refreshTokens(using: refreshToken.token)
+            let newTokens = try await AuthenticationHandlerAsync.refreshTokens(using: refreshToken.token, refreshURL: refreshURL, networkRequest: networkRequest)
             apiTokens = newTokens
             
             return newTokens
@@ -79,44 +79,14 @@ public actor AuthenticationHandlerAsync {
         return try await task.value
     }
     
-    /// Authenticates URLRequests
-    /// - Parameter request: Requests to be authenticated
-    /// - Returns: The result of the request
-    public func performAuthenticatedRequest(_ request: URLRequest) async throws -> (Data, URLResponse) {
-        
-        let tokens = try await validTokens()
-        
-        do {
-            let response = try await performAuthenticatedRequest(request, accessToken: tokens.token)
-            if let code = (response.1 as? HTTPURLResponse)?.statusCode,
-               code == 401
-            {
-                throw URLError(.userAuthenticationRequired)
-            }
-            return response
-        } catch let error as URLError where error.code == .userAuthenticationRequired {
-            let freshTokens = try await refreshTokens(using: tokens.refreshToken.token)
-            let response = try await performAuthenticatedRequest(request, accessToken: freshTokens.token)
-            return response
-        }
-    }
-    
-    /// Adds access token to request
-    /// throws auth error if provided token should be invalid
-    private func performAuthenticatedRequest(
-        _ request: URLRequest,
-        accessToken: AccessToken
-    ) async throws -> (Data, URLResponse) {
-        var request = request
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
-        return try await networkRequest(request)
-    }
-    
     /// Make call to refresh access token
     /// - Parameter refreshToken: refreshtoken to be used
     /// - Returns: A fresh set of tokens
-    private func refreshTokens(using refreshToken: RefreshToken) async throws -> APITokensEnvelope {
+    private static func refreshTokens(
+        using refreshToken: RefreshToken,
+        refreshURL: URL,
+        networkRequest: (URLRequest) async throws -> (Data, URLResponse)
+    ) async throws -> APITokensEnvelope {
         struct Body: Encodable {
             let token: String
         }
@@ -134,24 +104,51 @@ public actor AuthenticationHandlerAsync {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let response = try await networkRequest(request)
+        print("✈️ResponseData: \(String(data: response.0, encoding: .utf8)!)")
         if let code = (response.1 as? HTTPURLResponse)?.statusCode,
-           code == 401
-        {
-            self.apiTokens = nil
+           code == 401 {
             throw URLError(.userAuthenticationRequired)
         }
         
         return try decoder.decode(APITokensEnvelope.self, from: response.0)
     }
+    
+    /// Authenticates URLRequests
+    /// - Parameter request: Requests to be authenticated
+    /// - Returns: The result of the request
+    public func performAuthenticatedRequest(_ request: URLRequest) async throws -> (Data, URLResponse) {
+        
+        do {
+            let tokens = try await validTokens()
+            
+            do {
+                let response = try await performAuthenticatedRequest(request, accessToken: tokens.token)
+                if
+                    let code = (response.1 as? HTTPURLResponse)?.statusCode,
+                    code == 401 {
+                    throw URLError(.userAuthenticationRequired)
+                }
+                return response
+            } catch let error as URLError where error.code == .userAuthenticationRequired {
+                let freshTokens = try await refreshedTokens()
+                let response = try await performAuthenticatedRequest(request, accessToken: freshTokens.token)
+                return response
+            }
+        } catch {
+            apiTokens = nil
+            throw error
+        }
+    }
+    
+    /// Adds access token to request
+    /// throws auth error if provided token should be invalid
+    private func performAuthenticatedRequest(
+        _ request: URLRequest,
+        accessToken: AccessToken
+    ) async throws -> (Data, URLResponse) {
+        var request = request
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        return try await networkRequest(request)
+    }
 }
-
-//#if !RELEASE
-//extension AccessToken {
-//    /// A token with expiry some time in December afair
-//    public static let expired = AccessToken(
-//        rawValue:
-//            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMyIsInRva2VuVHlwZSI6Ik1lcmNoYW50IiwibmJmIjoxNjM5NTg0OTUyLCJleHAiOjE2Mzk1ODYxNTIsImlhdCI6MTYzOTU4NDk1Mn0.X2w58Hk8Wtct3-PHYqPLGmCsUgrPuLcp9-hw98E4ZCM"
-//    )
-//}
-//#endif
-

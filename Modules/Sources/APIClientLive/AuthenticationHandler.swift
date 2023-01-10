@@ -180,5 +180,10 @@ public class AuthenticationHandler {
             rawValue:
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMyIsInRva2VuVHlwZSI6Ik1lcmNoYW50IiwibmJmIjoxNjM5NTg0OTUyLCJleHAiOjE2Mzk1ODYxNTIsImlhdCI6MTYzOTU4NDk1Mn0.X2w58Hk8Wtct3-PHYqPLGmCsUgrPuLcp9-hw98E4ZCM"
         )
+        
+        public static let expires06142256 = AccessToken(
+            rawValue:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMyIsInRva2VuVHlwZSI6Ik1lcmNoYW50IiwibmJmIjo5MDM5NTg0OTUyLCJleHAiOjkwMzk1ODQ5NTIsImlhdCI6OTAzOTU4NDk1Mn0.NUkAhQu3Enh-S02ktYWA97OVkp3skSkLcYXFEEpHCfw"
+        )
     }
 #endif
