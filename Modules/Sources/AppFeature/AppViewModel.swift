@@ -6,20 +6,24 @@
 //
 
 import Combine
+import Dependencies
 import LoginFeature
 import MainFeature
+import Model
+import PersistenceClient
 import SwiftUI
 
 public class AppViewModel: ObservableObject {
-
-    var environment: AppEnvironment
-    var cancellables: Set<AnyCancellable> = []
 
     public enum Route {
         case login(LoginViewModel)
         case main(MainViewModel)
     }
     @Published var route: Route?
+    
+    @Dependency(\.apiClient) var apiClient
+    @Dependency(\.persistenceClient) var persistenceClient
+    @Dependency(\.date) var date
 
     enum BannerState {
         case offline(String)
@@ -29,27 +33,23 @@ public class AppViewModel: ObservableObject {
     @Published var bannerState: BannerState?
 
     public init(
-        environment: AppEnvironment,
         route: AppViewModel.Route? = nil
     ) {
-        self.environment = environment
         self.route = route
-        environment.tokenUpdatePublisher
-            .dropFirst()
-            .filter { $0 == nil }
-            .removeDuplicates()
-            .sink { [unowned self] _ in
-                showLogin()
+        
+        Task {
+            for await token in apiClient.tokensUpdateStream {
+                if token == nil {
+                    showLogin()
+                }
             }
-            .store(in: &cancellables)
-
-       
+        }
     }
     
     func onAppear() {
         if
-            let tokens = environment.persistenceClient.tokens.load(),
-            tokens.refreshToken.expiresAt > environment.date() {
+            let tokens = persistenceClient.tokens.load(),
+            tokens.refreshToken.expiresAt > date() {
             showMain()
         } else {
             showLogin()
@@ -61,26 +61,19 @@ public class AppViewModel: ObservableObject {
         route = .login(
             .init(
                 onSuccess: { [unowned self] in
-                    environment.persistenceClient.tokens.save($0)
-                    environment.apiClient.setToken($0)
-                    environment.persistenceClient.email.save($1)
+                    persistenceClient.tokens.save($0)
+                    persistenceClient.email.save($1)
                     withAnimation {
                         showMain()
                     }
-                },
-                environment: LoginEnvironment(
-                    mainQueue: environment.mainQueue,
-                    apiClient: environment.apiClient,
-                    date: environment.date,
-                    calendar: environment.calendar,
-                    localizations: environment.localizations,
-                    appVersion: environment.appVersion
-                )))
+                }
+            )
+        )
     }
     
     func showMain() {
         route = .main(
-            .init(environment: .init(mainQueue: environment.mainQueue))
+            .init()
         )
     }
 }

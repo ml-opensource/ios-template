@@ -31,19 +31,18 @@ public struct AppVersion {
     )
 }
 
-#if DEBUG
-    import XCTestDynamicOverlay
 
-    extension AppVersion {
-        public static let failing = Self(
-            version: {
-                XCTFail("\(Self.self).version is unimplemented")
-                return ""
-            },
-            build: {
-                XCTFail("\(Self.self).build is unimplemented")
-                return ""
-            }
-        )
-    }
-#endif
+import XCTestDynamicOverlay
+
+extension AppVersion {
+    public static let failing = Self(
+        version: {
+            XCTFail("\(Self.self).version is unimplemented")
+            return ""
+        },
+        build: {
+            XCTFail("\(Self.self).build is unimplemented")
+            return ""
+        }
+    )
+}

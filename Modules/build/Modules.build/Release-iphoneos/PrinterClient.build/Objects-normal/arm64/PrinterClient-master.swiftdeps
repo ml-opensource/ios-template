@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
-options: "b8f5e74fef108489543b05327fb8278e89aadc966d0c62c8be2b0af7cff11f49"
-build_start_time: [1646739670, 196513175]
-build_end_time: [1646739673, 272656917]
-inputs:
-  "/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/PrinterClient/Client.swift": [1646238461, 358780860]

@@ -7,10 +7,11 @@
 import Combine
 import Foundation
 import Model
+import TokenHandler
 
 ///  Type erasing wrapper used bc enum cases cannot be generic
 struct AnyEncodable: Encodable {
-    let wrapped: Encodable
+    let wrapped: any Encodable
     public init<Input: Encodable>(_ input: Input) {
         self.wrapped = input
     }
@@ -21,10 +22,8 @@ struct AnyEncodable: Encodable {
 }
 
 extension URLRequest {
-    func authenticateAndPerform(using handler: AuthenticationHandler) -> AnyPublisher<
-        URLSession.DataTaskPublisher.Output, Error
-    > {
-        handler.authenticateRequest(self)
+    func authenticateAndPerform<T>(using handler: AuthenticationHandlerAsync<T>) async throws -> URLSession.DataTaskPublisher.Output {
+        try await handler.performAuthenticatedRequest(self)
     }
 }
 

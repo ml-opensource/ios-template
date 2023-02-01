@@ -16,8 +16,7 @@ public struct MainView: View {
     struct MainView_Previews: PreviewProvider {
         static var previews: some View {
             MainView(
-                viewModel: .init(
-                    environment: .init(mainQueue: .immediate))
+                viewModel: .init()
             )
         }
     }

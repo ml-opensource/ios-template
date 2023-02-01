@@ -8,10 +8,14 @@
 import Foundation
 import NStackSDK
 
-public func startNStackSDK(appId: String, restAPIKey: String) -> ObservableLocalizations {
+public func startNStackSDK(
+    appId: String,
+    restAPIKey: String,
+    environment: NStackSDK.Configuration.NStackEnvironment
+) -> ObservableLocalizations {
     let config = NStackSDK.Configuration(
         appId: appId, restAPIKey: restAPIKey, localizationClass: Localizations.self,
-        environment: .debug
+        environment: environment
     )
 
     NStack.start(configuration: config, launchOptions: nil)

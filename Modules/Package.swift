@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -23,6 +23,7 @@ let package = Package(
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
         .library(name: "Style", targets: ["Style"]),
+        .library(name: "TokenHandler", targets: ["TokenHandler"]),
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.6.0"),
@@ -30,6 +31,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.3"),
         .package(url: "https://github.com/pointfreeco/swiftui-navigation", from: "0.1.0"),
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.1"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.4"),
         .package(url: "https://github.com/nstack-io/nstack-ios-sdk", branch: "feature/spm-support"),
     ],
     targets: [
@@ -38,13 +40,15 @@ let package = Package(
         .target(
             name: "APIClient",
             dependencies: [
-                "Model", .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+                "Model",
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
             ],
             resources: []
         ),
         .target(
             name: "APIClientLive",
-            dependencies: ["APIClient", "Model"],
+            dependencies: ["APIClient", "Model", "TokenHandler"],
             resources: []
         ),
         .testTarget(
@@ -66,7 +70,8 @@ let package = Package(
         .target(
             name: "AppVersion",
             dependencies: [
-                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay")
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
             ],
             resources: []
         ),
@@ -82,6 +87,7 @@ let package = Package(
                 .product(name: "CombineSchedulers", package: "combine-schedulers"), "Localizations",
                 "Model", "Style",
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
             ],
             resources: []
         ),
@@ -92,7 +98,10 @@ let package = Package(
             ]),
         .target(
             name: "Localizations",
-            dependencies: [.product(name: "NStackSDK", package: "nstack-ios-sdk")],
+            dependencies: [
+                .product(name: "NStackSDK", package: "nstack-ios-sdk"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+            ],
             exclude: [
                 "SKLocalizations.swift",
                 "NStack/NStack.plist",
@@ -125,14 +134,18 @@ let package = Package(
         .target(
             name: "NetworkClient",
             dependencies: [
-                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay")
+                .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
             ],
             resources: []
         ),
 
         .target(
             name: "PersistenceClient",
-            dependencies: ["Model"],
+            dependencies: [
+                "Model",
+                .product(name: "Dependencies", package: "swift-dependencies"),
+            ],
             resources: []
         ),
 
@@ -141,6 +154,17 @@ let package = Package(
             dependencies: [
                 "Helpers", .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
             ],
-            resources: [.process("Colors.xcassets"), .process("Fonts")]),
+            resources: [.process("Colors.xcassets"), .process("Fonts")]
+        ),
+        .target(
+            name: "TokenHandler",
+            dependencies: [],
+            resources: []
+        ),
+        .testTarget(
+            name: "TokenHandlerTests",
+            dependencies: [
+                "TokenHandler",
+            ]),
     ]
 )

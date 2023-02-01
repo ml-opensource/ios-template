@@ -32,6 +32,10 @@ extension Localizations {
         "Localizations_da-DK", in: .myModule)
 }
 
+extension ObservableLocalizations {
+    public static var bundled = ObservableLocalizations(.bundled)
+}
+
 class CurrentBundleFinder {}
 extension Foundation.Bundle {
     static var myModule: Bundle = {

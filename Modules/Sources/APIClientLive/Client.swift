@@ -9,6 +9,8 @@ import APIClient
 import Combine
 import Foundation
 import Model
+import TokenHandler
+import XCTestDynamicOverlay
 
 extension APIClient {
 
@@ -17,41 +19,18 @@ extension APIClient {
     ///   - url: base url to be used
     ///   - authenticationHandler: AuthenticationHandler type
     /// - Returns: Live APIclient
-    public static func live(
+    public static func live<APITokensEnvelope: APITokensEnvelopeProtocol>(
         baseURL url: URL,
-        authenticationHandler: AuthenticationHandler
+        authenticationHandler: AuthenticationHandlerAsync<APITokensEnvelope>,
+        tokensUpdateStream: AsyncStream<Model.APITokensEnvelope?>
     ) -> Self {
         var baseURL = url
-
+        let tokensUpdateStream = tokensUpdateStream
         return Self(
-            authenticate: { username, password in
-                fatalError()
-//                struct Body: Encodable {
-//                    let username: String
-//                    let password: String
-//                }
-//
-//                let decoder = JSONDecoder()
-//                let formatter = DateFormatter()
-//                formatter.locale = Locale(identifier: "en_US_POSIX")
-//                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
-//                decoder.dateDecodingStrategy = .formatted(formatter)
-//
-//                return makePostRequest(
-//                    url: baseURL.appendingPathComponent("authenticate"),
-//                    requestBody: Body(username: username.rawValue, password: password.rawValue)
-//                )
-//                .publisher
-//                .flatMap(URLSession.shared.dataTaskPublisher(for:))
-//                .apiDecode(as: APITokens.self, jsonDecoder: decoder)
-//                .eraseToAnyPublisher()
-            },
-            refreshToken: { _ in fatalError("Manually refreshing should not be necessary") },
-            setToken: {
-                authenticationHandler.apiTokens = $0
-            },
+            authenticate: unimplemented(),
             setBaseURL: { baseURL = $0 },
-            currentBaseURL: { baseURL }
+            currentBaseURL: { baseURL },
+            tokensUpdateStream: tokensUpdateStream
         )
     }
 }

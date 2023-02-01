@@ -87,9 +87,7 @@ public struct LoginView: View {
                 .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 1)
         )
         .sheet(isPresented: $isShowingDeveloperScreen, onDismiss: nil) {
-            DeveloperScreen(
-                apiClient: viewModel.environment.apiClient
-            )
+            DeveloperScreen()
         }
         .alert(unwrapping: $viewModel.route, case: /LoginViewModel.Route.alert)
     }
@@ -104,19 +102,11 @@ public struct LoginView: View {
         static var previews: some View {
             LoginView(
                 viewModel: .init(
-                    onSuccess: { _, _ in },
-                    environment: .init(
-                        mainQueue: .immediate,
-                        apiClient: .mock,
-                        date: Date.init,
-                        calendar: .init(identifier: .gregorian),
-                        localizations: .init(.bundled),
-                        appVersion: .noop
-                    )
+                    onSuccess: { _, _ in }
                 )
             )
             .registerFonts()
-            .environmentObject(ObservableLocalizations.init(.bundled))
+            .environmentObject(ObservableLocalizations.bundled)
         }
     }
 #endif
