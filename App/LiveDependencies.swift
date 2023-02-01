@@ -12,6 +12,7 @@ import Dependencies
 import Foundation
 import Localizations
 import Model
+import NetworkClient
 import NStackSDK
 import PersistenceClient
 import TokenHandler
@@ -70,6 +71,12 @@ extension ObservableLocalizations: DependencyKey {
             restAPIKey: envVars.nstackVars.restAPIKey,
             environment: envVars.nstackVars.environment
         )
+    }
+}
+
+extension NetworkClient: DependencyKey {
+    public static var liveValue: NetworkClient {
+        .live(queue: .main)
     }
 }
 
