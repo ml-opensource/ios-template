@@ -11,14 +11,14 @@ import Tagged
 public enum UnitCodeTag {}
 public typealias UnitCode = Tagged<UnitCodeTag, String>
 
-public struct Product: Equatable, Identifiable, Decodable {
+public struct ExampleProduct: Equatable, Identifiable, Decodable {
 
     public enum ServingTemperature: String, Equatable, Decodable {
         case warm, cold
     }
     public typealias ID = Tagged<Self, Int>
 
-    public var id: Product.ID
+    public var id: ExampleProduct.ID
     public var name: String
     public var `description`: String
     public var price: Double
@@ -31,10 +31,10 @@ public struct Product: Equatable, Identifiable, Decodable {
 
 public struct LineItem: Equatable, Decodable, Identifiable {
 
-    public var id: Product.ID {
+    public var id: ExampleProduct.ID {
         product.id
     }
 
-    public var product: Product
+    public var product: ExampleProduct
     public var quantity: Int
 }
