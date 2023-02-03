@@ -29,6 +29,7 @@ public class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var appVersionString: String = ""
     @Published var isAPICallInFlight = false
+    @Published var focusState: LoginView.FocueField?
 
     var loginCancellable: AnyCancellable?
     var cancellables: Set<AnyCancellable> = []
@@ -42,8 +43,23 @@ public class LoginViewModel: ObservableObject {
 
     /// Simple heuristics for email pattern
     var isButtonEnabled: Bool {
-        email.contains("@") && email.contains(".") && email.count >= 6
-            && !password.isEmpty && !isAPICallInFlight
+        email.contains("@")
+        && email.contains(".")
+        && email.count >= 6
+        && !password.isEmpty
+        && !isAPICallInFlight
+    }
+    
+    func onAppear() {
+        focusState = .email
+    }
+    
+    func emailChanged(_ text: String) {
+        email = text
+    }
+    
+    func passwordChanged(_ text: String) {
+        password = text
     }
 
     func loginButtonTapped() {
@@ -70,30 +86,6 @@ public class LoginViewModel: ObservableObject {
             }
             isAPICallInFlight = false
         }
-//        loginCancellable = environment.apiClient.authenticate(
-//            Username(rawValue: email.trimmingCharacters(in: .whitespacesAndNewlines)),
-//            Password(rawValue: password.trimmingCharacters(in: .whitespacesAndNewlines))
-//        )
-//        .receive(on: environment.mainQueue, options: nil)
-//        .sink(
-//            receiveCompletion: { [weak self, environment] in
-//                if case .failure(let error) = $0 {
-//                    self?.route = .alert(
-//                        .withTitleAndMessage(
-//                            title: environment.localizations.error.errorTitle,
-//                            message: error.errorCode == "401"
-//                                ? environment.localizations.login.errorInvalidCredentials
-//                                : environment.localizations.error.serverError,
-//                            action1: .primary(
-//                                title: environment.localizations.defaultSection.ok.uppercased(),
-//                                action: { self?.route = nil })
-//                        )
-//                    )
-//                }
-//                self?.isAPICallInFlight = false
-//            },
-//            receiveValue: { [unowned self] in onSuccess($0, .init(rawValue: email)) }
-//        )
     }
 
 }

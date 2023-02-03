@@ -13,6 +13,10 @@ extension APIClient: TestDependencyKey {
     public static var testValue: APIClient {
         .failing
     }
+    
+    public static var previewValue: APIClient {
+        .mock
+    }
 }
 
 public extension DependencyValues {

@@ -14,7 +14,7 @@ extension APIClient {
         authenticate: { _, _ in .mock },
         fetchExampleProducts: { .mocks(5) },
         setBaseURL: { _ in },
-        currentBaseURL: { URL.init(string: ":")! },
-        tokensUpdateStream: .init(unfolding: { .none })
+        currentBaseURL: { URL(string: ":")! },
+        tokensUpdateStream: { .init(unfolding: { .none }) }
     )
 }

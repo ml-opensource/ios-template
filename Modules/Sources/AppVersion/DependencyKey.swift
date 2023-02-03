@@ -12,6 +12,10 @@ extension AppVersion: TestDependencyKey {
     public static var testValue: AppVersion {
         .failing
     }
+    
+    public static var previewValue: AppVersion {
+        .mock
+    }
 }
 
 extension DependencyValues {

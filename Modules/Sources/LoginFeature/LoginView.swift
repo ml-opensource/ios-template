@@ -12,6 +12,12 @@ import SwiftUI
 import SwiftUINavigation
 
 public struct LoginView: View {
+    
+    enum FocueField: Hashable {
+        case email, password
+    }
+    
+    @FocusState var focusField: FocueField?
 
     @ObservedObject var viewModel: LoginViewModel
     @EnvironmentObject var localizations: ObservableLocalizations
@@ -34,10 +40,14 @@ public struct LoginView: View {
                         .font(.label2)
                     TextField(
                         localizations.login.emailHeader,
-                        text: $viewModel.email,
+                        text: .init(
+                            get: { viewModel.email },
+                            set: viewModel.emailChanged(_:)
+                        ),
                         prompt: Text(localizations.login.emailPlaceholder)
 
                     )
+                    .focused($focusField, equals: .email)
                     .font(.paragraph)
 
                     .padding()
@@ -51,9 +61,13 @@ public struct LoginView: View {
                         .font(.label2)
                     TextField(
                         localizations.login.passwordHeader,
-                        text: $viewModel.password,
+                        text: .init(
+                            get: { viewModel.password },
+                            set: viewModel.passwordChanged(_:)
+                        ),
                         prompt: Text(localizations.login.passwordPlaceholder)
                     )
+                    .focused($focusField, equals: .password)
                     .font(.paragraph)
                     .padding()
                     .overlay(
@@ -91,6 +105,8 @@ public struct LoginView: View {
             DeveloperScreen()
         }
         .alert(unwrapping: $viewModel.route, case: /LoginViewModel.Route.alert)
+        .onAppear(perform: viewModel.onAppear)
+        .bind($viewModel.focusState, to: $focusField)
     }
 }
 

@@ -17,14 +17,14 @@ public struct APIClient {
     public var fetchExampleProducts: () async throws -> [ExampleProduct]
     public var setBaseURL: (URL) -> Void
     public var currentBaseURL: () -> URL
-    public var tokensUpdateStream: AsyncStream<APITokensEnvelope?>
+    public var tokensUpdateStream: () -> AsyncStream<APITokensEnvelope?>
 
     public init(
         authenticate: @escaping (Username, Password) async throws -> APITokensEnvelope,
         fetchExampleProducts: @escaping () async throws -> [ExampleProduct],
         setBaseURL: @escaping (URL) -> Void,
         currentBaseURL: @escaping () -> URL,
-        tokensUpdateStream: AsyncStream<APITokensEnvelope?>
+        tokensUpdateStream:  @escaping () -> AsyncStream<APITokensEnvelope?>
     ) {
         self.authenticate = authenticate
         self.fetchExampleProducts = fetchExampleProducts
