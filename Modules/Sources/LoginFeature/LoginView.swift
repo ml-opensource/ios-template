@@ -5,6 +5,7 @@
 //  Created by Jakob Mygind on 09/12/2021.
 //
 
+import Dependencies
 import Localizations
 import Style
 import SwiftUI
@@ -97,14 +98,15 @@ public struct LoginView: View {
     import Localizations
 
     struct LoginView_Previews: PreviewProvider {
-        static var localizations: ObservableLocalizations = .init(.bundled)
-
         static var previews: some View {
-            LoginView(
-                viewModel: .init(
-                    onSuccess: { _, _ in }
-                )
-            )
+            LoginView(viewModel: withDependencies {
+                $0.localizations = .bundled
+                $0.apiClient = .mock
+                $0.appVersion = .mock
+            } operation: {
+                LoginViewModel(onSuccess: { _, _ in })
+            })
+          
             .registerFonts()
             .environmentObject(ObservableLocalizations.bundled)
         }

@@ -25,6 +25,11 @@ public struct AppVersion {
         build: { Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "" }
     )
 
+    public static let mock = Self(
+        version: { "1.2.3" },
+        build: { "4" }
+    )
+    
     public static let noop = Self(
         version: { "0.0.0" },
         build: { "0" }
