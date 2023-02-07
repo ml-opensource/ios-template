@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD05E4892987E76700D6EA73 /* APITokensProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05E4882987E76700D6EA73 /* APITokensProtocolConformance.swift */; };
 		BD1B2304274679C100F9B140 /* Localizations in Frameworks */ = {isa = PBXBuildFile; productRef = BD1B2303274679C100F9B140 /* Localizations */; };
 		BD2B080727833D070066D559 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = BD2B080627833D070066D559 /* AppFeature */; };
 		BD2FEFDB2768CA5C00E80BBC /* APIClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = BD2FEFDA2768CA5C00E80BBC /* APIClientLive */; };
 		BD3196EC2796EC1F0077C271 /* ProjectConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3196EB2796CC900077C271 /* ProjectConfig.swift */; };
+		BD8F63772980199E000EA587 /* LiveDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F63762980199E000EA587 /* LiveDependencies.swift */; };
+		BD8F637929801BC5000EA587 /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F637829801BC5000EA587 /* EnvVars.swift */; };
 		BDC6D5E9279183590028D211 /* PersistenceClient in Frameworks */ = {isa = PBXBuildFile; productRef = BDC6D5E8279183590028D211 /* PersistenceClient */; };
 		BDCA8DA12742611B00195B05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCA8DA02742611B00195B05 /* AppDelegate.swift */; };
 		BDCA8DAA2742611D00195B05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDCA8DA92742611D00195B05 /* Assets.xcassets */; };
@@ -31,9 +34,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD05E4882987E76700D6EA73 /* APITokensProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokensProtocolConformance.swift; sourceTree = "<group>"; };
 		BD3196E92796CB440077C271 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
-		BD3196EA2796CB690077C271 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
+		BD3196EA2796CB690077C271 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		BD3196EB2796CC900077C271 /* ProjectConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectConfig.swift; sourceTree = "<group>"; };
+		BD8F63762980199E000EA587 /* LiveDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDependencies.swift; sourceTree = "<group>"; };
+		BD8F637829801BC5000EA587 /* EnvVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvVars.swift; sourceTree = "<group>"; };
 		BDCA8D9D2742611B00195B05 /* PROJECT_NAME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROJECT_NAME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDCA8DA02742611B00195B05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDCA8DA92742611D00195B05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,8 +96,11 @@
 				BDCA8DAB2742611D00195B05 /* LaunchScreen.storyboard */,
 				BDCA8DAE2742611D00195B05 /* Info.plist */,
 				BD3196E92796CB440077C271 /* Production.xcconfig */,
-				BD3196EA2796CB690077C271 /* Test.xcconfig */,
+				BD3196EA2796CB690077C271 /* Staging.xcconfig */,
 				BD3196EB2796CC900077C271 /* ProjectConfig.swift */,
+				BD8F63762980199E000EA587 /* LiveDependencies.swift */,
+				BD8F637829801BC5000EA587 /* EnvVars.swift */,
+				BD05E4882987E76700D6EA73 /* APITokensProtocolConformance.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -217,6 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD3196EC2796EC1F0077C271 /* ProjectConfig.swift in Sources */,
+				BD05E4892987E76700D6EA73 /* APITokensProtocolConformance.swift in Sources */,
+				BD8F637929801BC5000EA587 /* EnvVars.swift in Sources */,
+				BD8F63772980199E000EA587 /* LiveDependencies.swift in Sources */,
 				BDCA8DA12742611B00195B05 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,7 +249,7 @@
 /* Begin XCBuildConfiguration section */
 		BDA09B442756276400E95F61 /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD3196EA2796CB690077C271 /* Test.xcconfig */;
+			baseConfigurationReference = BD3196EA2796CB690077C271 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -284,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -328,7 +340,7 @@
 		};
 		BDCA8DAF2742611D00195B05 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD3196EA2796CB690077C271 /* Test.xcconfig */;
+			baseConfigurationReference = BD3196EA2796CB690077C271 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -380,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -440,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

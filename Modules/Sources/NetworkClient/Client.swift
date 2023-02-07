@@ -31,10 +31,10 @@ extension NetworkClient {
         pathUpdateStream: XCTUnimplemented("\(Self.self).pathUpdateStream method not implemented.")
     )
     
-    public static let noop = Self.init(
+    public static let noop = Self(
         pathUpdateStream: { .init(unfolding: { .none }) }
     )
-    public static let happy = Self.init(
+    public static let happy = Self(
         pathUpdateStream: {
             .init { continuation in
                 continuation.yield(.init(status: .satisfied))
@@ -42,7 +42,7 @@ extension NetworkClient {
             }
         }
     )
-    public static let unhappy = Self.init(
+    public static let unhappy = Self(
         pathUpdateStream: {
             .init { continuation in
                 continuation.yield(.init(status: .unsatisfied))

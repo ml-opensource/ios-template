@@ -11,7 +11,7 @@ import StoreKit
 import XCTestDynamicOverlay
 
 // MARK: - Here are mocked versions of the domain models
-extension Product {
+extension ExampleProduct {
 
     public static let mock = Self(
         id: 1,
@@ -35,12 +35,12 @@ extension Product {
     )
 }
 
-extension Array where Element == Product {
+extension Array where Element == ExampleProduct {
     public static func mocks(_ count: Int) -> Self {
         guard count > 0 else { return [] }
         return (1...count).map { n in
 
-            var mock = Product.mock
+            var mock = ExampleProduct.mock
             mock.id = .init(rawValue: n)
             mock.name = "Croissant \(n)"
 
@@ -54,7 +54,7 @@ extension Array where Element == LineItem {
         guard count > 0 else { return [] }
         return (1...count).map { n in
 
-            var mock = Product.mock
+            var mock = ExampleProduct.mock
             mock.id = .init(rawValue: n)
             mock.name = "Croissant \(n)"
 

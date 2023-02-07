@@ -14,11 +14,11 @@ import SwiftUINavigation
 /// View that can switch between Login and Main view
 public struct AppView: View {
     @ObservedObject var viewModel: AppViewModel
-
+    
     public init(viewModel: AppViewModel) {
         self.viewModel = viewModel
     }
-
+    
     public var body: some View {
         IfLet($viewModel.route) { $route in
             Switch($route) {
@@ -50,54 +50,42 @@ public struct AppView: View {
         } else: {
             ProgressView()
         }
-        // .onAppear(perform: viewModel.onAppear)
+         .onAppear(perform: viewModel.onAppear)
     }
 }
 
 #if DEBUG
-    import Localizations
+import Localizations
 
-    struct AppView_Previews: PreviewProvider {
-        static var localizations: ObservableLocalizations = .init(.bundled)
-
-        static var previews: some View {
-            AppView(viewModel: .init(environment: .mock))
-                .previewDisplayName("No Route")
-
-            AppView(
-                viewModel: .init(
-                    environment: .mock,
-                    route: .main(
-                        .init(environment: .init(mainQueue: .immediate)))
+struct AppView_Previews: PreviewProvider {
+    static var localizations: ObservableLocalizations = .init(.bundled)
+    
+    static var previews: some View {
+        AppView(viewModel: .init())
+            .previewDisplayName("No Route")
+        
+        AppView(
+            viewModel: .init(
+                route: .main(
+                    .init()
                 )
             )
-            .registerFonts()
-            .environmentObject(ObservableLocalizations.init(.bundled))
-            .previewDisplayName("Main")
-
-            let environment: AppEnvironment = .mock
-            AppView(
-                viewModel: .init(
-                    environment: environment,
-                    route: .login(
-                        .init(
-                            onSuccess: { _, _ in },
-                            environment:
-                                LoginEnvironment(
-                                    mainQueue: environment.mainQueue,
-                                    apiClient: environment.apiClient,
-                                    date: environment.date,
-                                    calendar: environment.calendar,
-                                    localizations: environment.localizations,
-                                    appVersion: environment.appVersion
-                                )
-                        )
-                    )
+        )
+        .registerFonts()
+        .environmentObject(ObservableLocalizations.bundled)
+        .previewDisplayName("Main")
+        
+        AppView(
+            viewModel: .init(route: .login(
+                .init(
+                    onSuccess: { _, _ in }
                 )
             )
-            .registerFonts()
-            .environmentObject(ObservableLocalizations.init(.bundled))
-            .previewDisplayName("Login")
-        }
+            )
+        )
+        .registerFonts()
+        .environmentObject(ObservableLocalizations.bundled)
+        .previewDisplayName("Login")
     }
+}
 #endif

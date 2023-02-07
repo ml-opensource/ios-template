@@ -7,24 +7,17 @@
 import Combine
 import Foundation
 import Model
+import MLTokenHandler
 
 ///  Type erasing wrapper used bc enum cases cannot be generic
 struct AnyEncodable: Encodable {
-    let wrapped: Encodable
+    let wrapped: any Encodable
     public init<Input: Encodable>(_ input: Input) {
         self.wrapped = input
     }
 
     func encode(to encoder: Encoder) throws {
         try wrapped.encode(to: encoder)
-    }
-}
-
-extension URLRequest {
-    func authenticateAndPerform(using handler: AuthenticationHandler) -> AnyPublisher<
-        URLSession.DataTaskPublisher.Output, Error
-    > {
-        handler.authenticateRequest(self)
     }
 }
 

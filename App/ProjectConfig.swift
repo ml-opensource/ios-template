@@ -13,7 +13,7 @@ public enum Configuration {
     public enum API {
         enum Key: String, CaseIterable {
             #if !RELEASE
-                case dev = "API_BASE_URL_DEV"
+                case dev = "API_BASE_URL_STAGING"
             #endif
             case prod = "API_BASE_URL_PROD"
             static var defaultKey = "DEFAULT_BASE_URL"

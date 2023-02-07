@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_BASE_URL_DEV</key>
-	<string>$(API_BASE_URL_DEV)</string>
+	<key>API_BASE_URL_STAGING</key>
+	<string>$(API_BASE_URL_STAGING)</string>
 	<key>API_BASE_URL_PROD</key>
 	<string>$(API_BASE_URL_PROD)</string>
 	<key>DEFAULT_BASE_URL</key>

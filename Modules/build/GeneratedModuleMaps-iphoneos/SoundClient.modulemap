@@ -1,4 +1,0 @@
-module SoundClient {
-header "SoundClient-Swift.h"
-export *
-}

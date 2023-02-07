@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
-options: "b4aeda3ea2f70730af2ce01d6265492e6d8151399fc63dc4011130b4f0de3adf"
-build_start_time: [1646739673, 494933128]
-build_end_time: [1646739674, 279633998]
-inputs:
-  "/Users/jakobmygind/Documents/Xcode/ML/7-Eleven/InStoreApp/Modules/Sources/TouchInterceptorClient/TouchInterceptorClient.swift": !dirty [1646238462, 665635824]

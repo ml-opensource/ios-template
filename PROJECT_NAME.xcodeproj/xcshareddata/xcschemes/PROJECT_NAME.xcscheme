@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ColumnTests"
-               BuildableName = "ColumnTests"
-               BlueprintName = "ColumnTests"
+               BlueprintIdentifier = "APIClientLiveTests"
+               BuildableName = "APIClientLiveTests"
+               BlueprintName = "APIClientLiveTests"
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DashboardTests"
-               BuildableName = "DashboardTests"
-               BlueprintName = "DashboardTests"
+               BlueprintIdentifier = "LoginFeatureTests"
+               BuildableName = "LoginFeatureTests"
+               BlueprintName = "LoginFeatureTests"
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>
@@ -52,9 +52,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SearchOrdersTests"
-               BuildableName = "SearchOrdersTests"
-               BlueprintName = "SearchOrdersTests"
+               BlueprintIdentifier = "MainFeatureTests"
+               BuildableName = "MainFeatureTests"
+               BlueprintName = "MainFeatureTests"
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>

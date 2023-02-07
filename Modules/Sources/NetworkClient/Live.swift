@@ -14,7 +14,7 @@ extension NetworkClient {
 
         let monitor = NWPathMonitor()
 
-        return Self.init(
+        return Self(
             pathUpdateStream: {
                 AsyncStream { continuation in
                     monitor.start(queue: queue)

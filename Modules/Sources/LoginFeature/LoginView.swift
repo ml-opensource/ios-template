@@ -5,12 +5,19 @@
 //  Created by Jakob Mygind on 09/12/2021.
 //
 
+import Dependencies
 import Localizations
 import Style
 import SwiftUI
 import SwiftUINavigation
 
 public struct LoginView: View {
+    
+    enum FocueField: Hashable {
+        case email, password
+    }
+    
+    @FocusState var focusField: FocueField?
 
     @ObservedObject var viewModel: LoginViewModel
     @EnvironmentObject var localizations: ObservableLocalizations
@@ -33,10 +40,14 @@ public struct LoginView: View {
                         .font(.label2)
                     TextField(
                         localizations.login.emailHeader,
-                        text: $viewModel.email,
+                        text: .init(
+                            get: { viewModel.email },
+                            set: viewModel.emailChanged(_:)
+                        ),
                         prompt: Text(localizations.login.emailPlaceholder)
 
                     )
+                    .focused($focusField, equals: .email)
                     .font(.paragraph)
 
                     .padding()
@@ -50,9 +61,13 @@ public struct LoginView: View {
                         .font(.label2)
                     TextField(
                         localizations.login.passwordHeader,
-                        text: $viewModel.password,
+                        text: .init(
+                            get: { viewModel.password },
+                            set: viewModel.passwordChanged(_:)
+                        ),
                         prompt: Text(localizations.login.passwordPlaceholder)
                     )
+                    .focused($focusField, equals: .password)
                     .font(.paragraph)
                     .padding()
                     .overlay(
@@ -87,11 +102,11 @@ public struct LoginView: View {
                 .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 1)
         )
         .sheet(isPresented: $isShowingDeveloperScreen, onDismiss: nil) {
-            DeveloperScreen(
-                apiClient: viewModel.environment.apiClient
-            )
+            DeveloperScreen()
         }
         .alert(unwrapping: $viewModel.route, case: /LoginViewModel.Route.alert)
+        .onAppear(perform: viewModel.onAppear)
+        .bind($viewModel.focusState, to: $focusField)
     }
 }
 
@@ -99,24 +114,17 @@ public struct LoginView: View {
     import Localizations
 
     struct LoginView_Previews: PreviewProvider {
-        static var localizations: ObservableLocalizations = .init(.bundled)
-
         static var previews: some View {
-            LoginView(
-                viewModel: .init(
-                    onSuccess: { _, _ in },
-                    environment: .init(
-                        mainQueue: .immediate,
-                        apiClient: .mock,
-                        date: Date.init,
-                        calendar: .init(identifier: .gregorian),
-                        localizations: .init(.bundled),
-                        appVersion: .noop
-                    )
-                )
-            )
+            LoginView(viewModel: withDependencies {
+                $0.localizations = .bundled
+                $0.apiClient = .mock
+                $0.appVersion = .mock
+            } operation: {
+                LoginViewModel(onSuccess: { _, _ in })
+            })
+          
             .registerFonts()
-            .environmentObject(ObservableLocalizations.init(.bundled))
+            .environmentObject(ObservableLocalizations.bundled)
         }
     }
 #endif

@@ -1,16 +1,15 @@
 import APIClient
+import Dependencies
 import SwiftUI
 
 struct DeveloperScreen: View {
     init(
-        apiClient: APIClient
     ) {
-        self.apiClient = apiClient
         self.selectedURL = apiClient.currentBaseURL()
     }
 
    
-    let apiClient: APIClient
+    @Dependency(\.apiClient) var apiClient
     @Environment(\.apiEnvironments) var apiEnvironments: [APIClient.APIEnvironment]
    
     @State var selectedURL: URL = URL(string: ":")!

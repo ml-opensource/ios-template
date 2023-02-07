@@ -1,4 +1,0 @@
-module NetworkClient {
-header "NetworkClient-Swift.h"
-export *
-}

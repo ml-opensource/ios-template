@@ -11,10 +11,10 @@ import Model
 
 extension APIClient {
     public static let mock = Self(
-        authenticate: { _, _ in .init(value: .mock) },
-        refreshToken: { _ in .init(value: .mock) },
-        setToken: { _ in },
+        authenticate: { _, _ in .mock },
+        fetchExampleProducts: { .mocks(5) },
         setBaseURL: { _ in },
-        currentBaseURL: { URL.init(string: ":")! }
+        currentBaseURL: { URL(string: ":")! },
+        tokensUpdateStream: { .init(unfolding: { .none }) }
     )
 }
