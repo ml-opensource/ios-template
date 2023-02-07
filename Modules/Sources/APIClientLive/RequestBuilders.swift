@@ -7,7 +7,7 @@
 import Combine
 import Foundation
 import Model
-import TokenHandler
+import MLTokenHandler
 
 ///  Type erasing wrapper used bc enum cases cannot be generic
 struct AnyEncodable: Encodable {
@@ -19,64 +19,6 @@ struct AnyEncodable: Encodable {
     func encode(to encoder: Encoder) throws {
         try wrapped.encode(to: encoder)
     }
-}
-
-extension URLRequest {
-    func authenticateAndPerform<T, Value: Decodable>(using handler: AuthenticationHandlerAsync<T>) async throws -> Value {
-        do {
-            let data = try await handler.performAuthenticatedRequest(self)
-        } catch {
-            
-        }
-    }
-}
-
-func apiDecode<A: Decodable>(
-    as type: A.Type,
-    file: StaticString = #file,
-    line: UInt = #line,
-    jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
-        decoder.dateDecodingStrategy = .formatted(formatter)
-        return decoder
-    }(),
-    overrideDateFormat: String? = nil,
-    for request: URLRequest? = nil
-) async throws -> A {
-    self
-
-        .mapError { APIError(error: $0, file: file, line: line) }
-        .flatMap { data, response -> AnyPublisher<A, APIError> in
-            do {
-                return try Just(jsonDecoder.decode(A.self, from: data))
-                    .setFailureType(to: APIError.self)
-                    .eraseToAnyPublisher()
-            } catch let decodingError {
-                if let request = request {
-                    debugPrint(
-                        "\(#function) \(decodingError) \ndata: \(String(data: data, encoding: .utf8) ?? "-")\nRequest: \(request)"
-                    )
-                } else {
-                    debugPrint(
-                        "\(#function) \(decodingError) \ndata: \(String(data: data, encoding: .utf8) ?? "-")"
-                    )
-                }
-                do {
-                    var decodedError = try jsonDecoder.decode(APIError.self, from: data)
-                    if let code = (response as? HTTPURLResponse)?.statusCode {
-                        decodedError.errorCode = "\(code)"
-                    }
-                    return Fail(error: decodedError)
-                        .eraseToAnyPublisher()
-                } catch {
-                    return Fail(error: APIError(error: decodingError)).eraseToAnyPublisher()
-                }
-            }
-        }
-        .eraseToAnyPublisher()
 }
 
 func apiRequest(_ method: Method) -> URLRequest {

@@ -5,7 +5,7 @@
 //  Created by Jakob Mygind on 30/01/2023.
 //
 
-import TokenHandler
+import MLTokenHandler
 import Model
 import Foundation
 

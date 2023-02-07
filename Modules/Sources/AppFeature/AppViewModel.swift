@@ -38,7 +38,7 @@ public class AppViewModel: ObservableObject {
         self.route = route
         
         Task {
-            for await token in apiClient.tokensUpdateStream {
+            for await token in apiClient.tokensUpdateStream() {
                 if token == nil {
                     showLogin()
                 }

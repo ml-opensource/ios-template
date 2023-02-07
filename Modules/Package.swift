@@ -23,7 +23,7 @@ let package = Package(
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "PersistenceClient", targets: ["PersistenceClient"]),
         .library(name: "Style", targets: ["Style"]),
-        .library(name: "TokenHandler", targets: ["TokenHandler"]),
+//        .library(name: "TokenHandler", targets: ["TokenHandler"]),
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.6.0"),
@@ -33,6 +33,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.4"),
         .package(url: "https://github.com/nstack-io/nstack-ios-sdk", branch: "feature/spm-support"),
+        .package(url: "https://github.com/nodes-ios/MLTokenHandler-ios.git", from: "0.9.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -48,7 +49,10 @@ let package = Package(
         ),
         .target(
             name: "APIClientLive",
-            dependencies: ["APIClient", "Model", "TokenHandler"],
+            dependencies: [
+                "APIClient", "Model",
+                .product(name: "MLTokenHandler", package: "MLTokenHandler-ios"),
+            ],
             resources: []
         ),
         .testTarget(
@@ -156,15 +160,15 @@ let package = Package(
             ],
             resources: [.process("Colors.xcassets"), .process("Fonts")]
         ),
-        .target(
-            name: "TokenHandler",
-            dependencies: [],
-            resources: []
-        ),
-        .testTarget(
-            name: "TokenHandlerTests",
-            dependencies: [
-                "TokenHandler",
-            ]),
+//        .target(
+//            name: "TokenHandler",
+//            dependencies: [],
+//            resources: []
+//        ),
+//        .testTarget(
+//            name: "TokenHandlerTests",
+//            dependencies: [
+//                "TokenHandler",
+//            ]),
     ]
 )

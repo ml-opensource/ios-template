@@ -9,7 +9,7 @@ import APIClient
 import Combine
 import Foundation
 import Model
-import TokenHandler
+import MLTokenHandler
 import XCTestDynamicOverlay
 
 extension APIClient {
@@ -36,7 +36,7 @@ extension APIClient {
       },
       setBaseURL: { baseURL = $0 },
       currentBaseURL: { baseURL },
-      tokensUpdateStream: tokensUpdateStream
+      tokensUpdateStream: { tokensUpdateStream }
     )
   }
 }

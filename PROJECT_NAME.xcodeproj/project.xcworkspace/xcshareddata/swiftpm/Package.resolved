@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "mltokenhandler-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nodes-ios/MLTokenHandler-ios.git",
+      "state" : {
+        "revision" : "06fdf171871542e532160aae324753dfd729b780",
+        "version" : "0.9.0"
+      }
+    },
+    {
       "identity" : "nstack-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nstack-io/nstack-ios-sdk",
