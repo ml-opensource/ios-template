@@ -20,10 +20,10 @@ public class LoginViewModel: ObservableObject {
     @Dependency(\.apiClient) var apiClient
     @Dependency(\.localizations) var localizations
 
-    enum Route {
+    enum Destination {
         case alert(AlertState)
     }
-    @Published var route: Route?
+    @Published var destination: Destination?
 
     @Published var email: String = ""
     @Published var password: String = ""
@@ -72,7 +72,7 @@ public class LoginViewModel: ObservableObject {
                 )
                 onSuccess(token, .init(rawValue: email))
             } catch let error as APIError {
-                route = .alert(
+                destination = .alert(
                     .withTitleAndMessage(
                         title: localizations.error.errorTitle,
                         message: error.errorCode == "401"
@@ -80,7 +80,7 @@ public class LoginViewModel: ObservableObject {
                         : localizations.error.serverError,
                         action1: .primary(
                             title: localizations.defaultSection.ok.uppercased(),
-                            action: { [weak self] in self?.route = nil })
+                            action: { [weak self] in self?.destination = nil })
                     )
                 )
             }

@@ -20,9 +20,9 @@ public struct AppView: View {
     }
     
     public var body: some View {
-        IfLet($viewModel.route) { $route in
-            Switch($route) {
-                CaseLet(/AppViewModel.Route.main) { $vm in
+        IfLet($viewModel.destination) { $destination in
+            Switch($destination) {
+                CaseLet(/AppViewModel.Destination.main) { $vm in
                     NavigationView {
                         MainView(viewModel: vm)
                             .transition(
@@ -36,7 +36,7 @@ public struct AppView: View {
                     }
                     .navigationViewStyle(.stack)
                 }
-                CaseLet(/AppViewModel.Route.login) { $vm in
+                CaseLet(/AppViewModel.Destination.login) { $vm in
                     LoginView(viewModel: vm)
                         .transition(
                             .asymmetric(
@@ -62,11 +62,11 @@ struct AppView_Previews: PreviewProvider {
     
     static var previews: some View {
         AppView(viewModel: .init())
-            .previewDisplayName("No Route")
+            .previewDisplayName("No Destination")
         
         AppView(
             viewModel: .init(
-                route: .main(
+                destination: .main(
                     .init()
                 )
             )
@@ -76,7 +76,7 @@ struct AppView_Previews: PreviewProvider {
         .previewDisplayName("Main")
         
         AppView(
-            viewModel: .init(route: .login(
+            viewModel: .init(destination: .login(
                 .init(
                     onSuccess: { _, _ in }
                 )
