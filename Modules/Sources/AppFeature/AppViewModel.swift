@@ -15,11 +15,11 @@ import SwiftUI
 
 public class AppViewModel: ObservableObject {
 
-    public enum Route {
+    public enum Destination {
         case login(LoginViewModel)
         case main(MainViewModel)
     }
-    @Published var route: Route?
+    @Published var destination: Destination?
     
     @Dependency(\.apiClient) var apiClient
     @Dependency(\.persistenceClient) var persistenceClient
@@ -33,9 +33,9 @@ public class AppViewModel: ObservableObject {
     @Published var bannerState: BannerState?
 
     public init(
-        route: AppViewModel.Route? = nil
+        destination: AppViewModel.Destination? = nil
     ) {
-        self.route = route
+        self.destination = destination
         
         Task {
             for await token in apiClient.tokensUpdateStream() {
@@ -58,7 +58,7 @@ public class AppViewModel: ObservableObject {
     }
 
     func showLogin() {
-        route = .login(
+        destination = .login(
             .init(
                 onSuccess: { [unowned self] in
                     persistenceClient.tokens.save($0)
@@ -72,7 +72,7 @@ public class AppViewModel: ObservableObject {
     }
     
     func showMain() {
-        route = .main(
+        destination = .main(
             // Using witghdependencies(from: self) here makes sure that if you have overridden dependencies e.g. for using a mock endpoint, the children use the mocked endpoint and not the liev one
             withDependencies(from: self, operation: MainViewModel.init)
         )

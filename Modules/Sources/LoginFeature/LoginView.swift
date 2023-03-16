@@ -104,7 +104,7 @@ public struct LoginView: View {
         .sheet(isPresented: $isShowingDeveloperScreen, onDismiss: nil) {
             DeveloperScreen()
         }
-        .alert(unwrapping: $viewModel.route, case: /LoginViewModel.Route.alert)
+        .alert(unwrapping: $viewModel.destination, case: /LoginViewModel.Destination.alert)
         .onAppear(perform: viewModel.onAppear)
         .bind($viewModel.focusState, to: $focusField)
     }
