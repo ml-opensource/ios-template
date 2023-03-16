@@ -33,34 +33,34 @@ import NLocalizationManager
 import LocalizationManager
 #endif
 public final class Localizations: LocalizableModel {
-    public var dashboard = Dashboard()
-    public var deliveryType = DeliveryType()
-    public var error = Error()
-    public var settings = Settings()
     public var units = Units()
-    public var login = Login()
-    public var printerOutput = PrinterOutput()
-    public var orderDetails = OrderDetails()
-    public var orderDetailNewOrderSection = OrderDetailNewOrderSection()
-    public var defaultSection = DefaultSection()
     public var printer = Printer()
-    public var orderStatus = OrderStatus()
+    public var orderDetails = OrderDetails()
+    public var dashboard = Dashboard()
+    public var error = Error()
     public var searchOrders = SearchOrders()
+    public var printerOutput = PrinterOutput()
+    public var login = Login()
+    public var defaultSection = DefaultSection()
+    public var orderStatus = OrderStatus()
+    public var deliveryType = DeliveryType()
+    public var orderDetailNewOrderSection = OrderDetailNewOrderSection()
+    public var settings = Settings()
 
     enum CodingKeys: String, CodingKey {
-        case dashboard
-        case deliveryType
-        case error
-        case settings
         case units
-        case login
-        case printerOutput
-        case orderDetails
-        case orderDetailNewOrderSection
-        case defaultSection = "default"
         case printer
-        case orderStatus
+        case orderDetails
+        case dashboard
+        case error
         case searchOrders
+        case printerOutput
+        case login
+        case defaultSection = "default"
+        case orderStatus
+        case deliveryType
+        case orderDetailNewOrderSection
+        case settings
     }
 
     public override init() { super.init() }
@@ -68,275 +68,63 @@ public final class Localizations: LocalizableModel {
     public required init(from decoder: Decoder) throws {
         super.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        dashboard = try container.decodeIfPresent(Dashboard.self, forKey: .dashboard) ?? dashboard
-        deliveryType = try container.decodeIfPresent(DeliveryType.self, forKey: .deliveryType) ?? deliveryType
-        error = try container.decodeIfPresent(Error.self, forKey: .error) ?? error
-        settings = try container.decodeIfPresent(Settings.self, forKey: .settings) ?? settings
         units = try container.decodeIfPresent(Units.self, forKey: .units) ?? units
-        login = try container.decodeIfPresent(Login.self, forKey: .login) ?? login
-        printerOutput = try container.decodeIfPresent(PrinterOutput.self, forKey: .printerOutput) ?? printerOutput
-        orderDetails = try container.decodeIfPresent(OrderDetails.self, forKey: .orderDetails) ?? orderDetails
-        orderDetailNewOrderSection = try container.decodeIfPresent(OrderDetailNewOrderSection.self, forKey: .orderDetailNewOrderSection) ?? orderDetailNewOrderSection
-        defaultSection = try container.decodeIfPresent(DefaultSection.self, forKey: .defaultSection) ?? defaultSection
         printer = try container.decodeIfPresent(Printer.self, forKey: .printer) ?? printer
-        orderStatus = try container.decodeIfPresent(OrderStatus.self, forKey: .orderStatus) ?? orderStatus
+        orderDetails = try container.decodeIfPresent(OrderDetails.self, forKey: .orderDetails) ?? orderDetails
+        dashboard = try container.decodeIfPresent(Dashboard.self, forKey: .dashboard) ?? dashboard
+        error = try container.decodeIfPresent(Error.self, forKey: .error) ?? error
         searchOrders = try container.decodeIfPresent(SearchOrders.self, forKey: .searchOrders) ?? searchOrders
+        printerOutput = try container.decodeIfPresent(PrinterOutput.self, forKey: .printerOutput) ?? printerOutput
+        login = try container.decodeIfPresent(Login.self, forKey: .login) ?? login
+        defaultSection = try container.decodeIfPresent(DefaultSection.self, forKey: .defaultSection) ?? defaultSection
+        orderStatus = try container.decodeIfPresent(OrderStatus.self, forKey: .orderStatus) ?? orderStatus
+        deliveryType = try container.decodeIfPresent(DeliveryType.self, forKey: .deliveryType) ?? deliveryType
+        orderDetailNewOrderSection = try container.decodeIfPresent(OrderDetailNewOrderSection.self, forKey: .orderDetailNewOrderSection) ?? orderDetailNewOrderSection
+        settings = try container.decodeIfPresent(Settings.self, forKey: .settings) ?? settings
     }
 
     public override subscript(key: String) -> LocalizableSection? {
         switch key {
-        case CodingKeys.dashboard.stringValue: return dashboard
-        case CodingKeys.deliveryType.stringValue: return deliveryType
-        case CodingKeys.error.stringValue: return error
-        case CodingKeys.settings.stringValue: return settings
         case CodingKeys.units.stringValue: return units
-        case CodingKeys.login.stringValue: return login
-        case CodingKeys.printerOutput.stringValue: return printerOutput
-        case CodingKeys.orderDetails.stringValue: return orderDetails
-        case CodingKeys.orderDetailNewOrderSection.stringValue: return orderDetailNewOrderSection
-        case CodingKeys.defaultSection.stringValue: return defaultSection
         case CodingKeys.printer.stringValue: return printer
-        case CodingKeys.orderStatus.stringValue: return orderStatus
+        case CodingKeys.orderDetails.stringValue: return orderDetails
+        case CodingKeys.dashboard.stringValue: return dashboard
+        case CodingKeys.error.stringValue: return error
         case CodingKeys.searchOrders.stringValue: return searchOrders
+        case CodingKeys.printerOutput.stringValue: return printerOutput
+        case CodingKeys.login.stringValue: return login
+        case CodingKeys.defaultSection.stringValue: return defaultSection
+        case CodingKeys.orderStatus.stringValue: return orderStatus
+        case CodingKeys.deliveryType.stringValue: return deliveryType
+        case CodingKeys.orderDetailNewOrderSection.stringValue: return orderDetailNewOrderSection
+        case CodingKeys.settings.stringValue: return settings
         default: return nil
         }
     }
 
-    public final class Dashboard: LocalizableSection {
-        public var itemsPlural = ""
-        public var columnIncoming = ""
-        public var columnAccepted = ""
-        public var sectionToday = ""
-        public var columnAcceptedEmpty = ""
-        public var columnDoneToday = ""
-        public var allOrdersButton = ""
-        public var columnReady = ""
-        public var columnIncomingEmpty = ""
-        public var columnOutForDeliveryEmpty = ""
-        public var sectionLater = ""
-        public var itemsSingular = ""
-        public var columnDoneTodayEmpty = ""
-        public var columnReadyEmpty = ""
-        public var columnOutForDelivery = ""
-        public var sectionTomorrow = ""
-
-        enum CodingKeys: String, CodingKey {
-            case itemsPlural
-            case columnIncoming
-            case columnAccepted
-            case sectionToday
-            case columnAcceptedEmpty
-            case columnDoneToday
-            case allOrdersButton
-            case columnReady
-            case columnIncomingEmpty
-            case columnOutForDeliveryEmpty
-            case sectionLater
-            case itemsSingular
-            case columnDoneTodayEmpty
-            case columnReadyEmpty
-            case columnOutForDelivery
-            case sectionTomorrow
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            itemsPlural = try container.decodeIfPresent(String.self, forKey: .itemsPlural) ?? "__itemsPlural"
-            columnIncoming = try container.decodeIfPresent(String.self, forKey: .columnIncoming) ?? "__columnIncoming"
-            columnAccepted = try container.decodeIfPresent(String.self, forKey: .columnAccepted) ?? "__columnAccepted"
-            sectionToday = try container.decodeIfPresent(String.self, forKey: .sectionToday) ?? "__sectionToday"
-            columnAcceptedEmpty = try container.decodeIfPresent(String.self, forKey: .columnAcceptedEmpty) ?? "__columnAcceptedEmpty"
-            columnDoneToday = try container.decodeIfPresent(String.self, forKey: .columnDoneToday) ?? "__columnDoneToday"
-            allOrdersButton = try container.decodeIfPresent(String.self, forKey: .allOrdersButton) ?? "__allOrdersButton"
-            columnReady = try container.decodeIfPresent(String.self, forKey: .columnReady) ?? "__columnReady"
-            columnIncomingEmpty = try container.decodeIfPresent(String.self, forKey: .columnIncomingEmpty) ?? "__columnIncomingEmpty"
-            columnOutForDeliveryEmpty = try container.decodeIfPresent(String.self, forKey: .columnOutForDeliveryEmpty) ?? "__columnOutForDeliveryEmpty"
-            sectionLater = try container.decodeIfPresent(String.self, forKey: .sectionLater) ?? "__sectionLater"
-            itemsSingular = try container.decodeIfPresent(String.self, forKey: .itemsSingular) ?? "__itemsSingular"
-            columnDoneTodayEmpty = try container.decodeIfPresent(String.self, forKey: .columnDoneTodayEmpty) ?? "__columnDoneTodayEmpty"
-            columnReadyEmpty = try container.decodeIfPresent(String.self, forKey: .columnReadyEmpty) ?? "__columnReadyEmpty"
-            columnOutForDelivery = try container.decodeIfPresent(String.self, forKey: .columnOutForDelivery) ?? "__columnOutForDelivery"
-            sectionTomorrow = try container.decodeIfPresent(String.self, forKey: .sectionTomorrow) ?? "__sectionTomorrow"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.itemsPlural.stringValue: return itemsPlural
-            case CodingKeys.columnIncoming.stringValue: return columnIncoming
-            case CodingKeys.columnAccepted.stringValue: return columnAccepted
-            case CodingKeys.sectionToday.stringValue: return sectionToday
-            case CodingKeys.columnAcceptedEmpty.stringValue: return columnAcceptedEmpty
-            case CodingKeys.columnDoneToday.stringValue: return columnDoneToday
-            case CodingKeys.allOrdersButton.stringValue: return allOrdersButton
-            case CodingKeys.columnReady.stringValue: return columnReady
-            case CodingKeys.columnIncomingEmpty.stringValue: return columnIncomingEmpty
-            case CodingKeys.columnOutForDeliveryEmpty.stringValue: return columnOutForDeliveryEmpty
-            case CodingKeys.sectionLater.stringValue: return sectionLater
-            case CodingKeys.itemsSingular.stringValue: return itemsSingular
-            case CodingKeys.columnDoneTodayEmpty.stringValue: return columnDoneTodayEmpty
-            case CodingKeys.columnReadyEmpty.stringValue: return columnReadyEmpty
-            case CodingKeys.columnOutForDelivery.stringValue: return columnOutForDelivery
-            case CodingKeys.sectionTomorrow.stringValue: return sectionTomorrow
-            default: return nil
-            }
-        }
-    }
-
-    public final class DeliveryType: LocalizableSection {
-        public var collect = ""
-        public var delivery = ""
-
-        enum CodingKeys: String, CodingKey {
-            case collect
-            case delivery
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            collect = try container.decodeIfPresent(String.self, forKey: .collect) ?? "__collect"
-            delivery = try container.decodeIfPresent(String.self, forKey: .delivery) ?? "__delivery"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.collect.stringValue: return collect
-            case CodingKeys.delivery.stringValue: return delivery
-            default: return nil
-            }
-        }
-    }
-
-    public final class Error: LocalizableSection {
-        public var connectionError = ""
-        public var unknownError = ""
-        public var serverError = ""
-        public var errorTitle = ""
-        public var authenticationError = ""
-
-        enum CodingKeys: String, CodingKey {
-            case connectionError
-            case unknownError
-            case serverError
-            case errorTitle
-            case authenticationError
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            connectionError = try container.decodeIfPresent(String.self, forKey: .connectionError) ?? "__connectionError"
-            unknownError = try container.decodeIfPresent(String.self, forKey: .unknownError) ?? "__unknownError"
-            serverError = try container.decodeIfPresent(String.self, forKey: .serverError) ?? "__serverError"
-            errorTitle = try container.decodeIfPresent(String.self, forKey: .errorTitle) ?? "__errorTitle"
-            authenticationError = try container.decodeIfPresent(String.self, forKey: .authenticationError) ?? "__authenticationError"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.connectionError.stringValue: return connectionError
-            case CodingKeys.unknownError.stringValue: return unknownError
-            case CodingKeys.serverError.stringValue: return serverError
-            case CodingKeys.errorTitle.stringValue: return errorTitle
-            case CodingKeys.authenticationError.stringValue: return authenticationError
-            default: return nil
-            }
-        }
-    }
-
-    public final class Settings: LocalizableSection {
-        public var title = ""
-        public var logOutButton = ""
-        public var usernameHeader = ""
-        public var logOutAlertCancel = ""
-        public var logOutAlertConfirm = ""
-        public var printerHeader = ""
-        public var closeButton = ""
-        public var appVersionHeader = ""
-        public var logoutAlertTitle = ""
-        public var selectPrinterButton = ""
-        public var logOutAlertMessage = ""
-
-        enum CodingKeys: String, CodingKey {
-            case title
-            case logOutButton
-            case usernameHeader
-            case logOutAlertCancel
-            case logOutAlertConfirm
-            case printerHeader
-            case closeButton
-            case appVersionHeader
-            case logoutAlertTitle
-            case selectPrinterButton
-            case logOutAlertMessage
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
-            logOutButton = try container.decodeIfPresent(String.self, forKey: .logOutButton) ?? "__logOutButton"
-            usernameHeader = try container.decodeIfPresent(String.self, forKey: .usernameHeader) ?? "__usernameHeader"
-            logOutAlertCancel = try container.decodeIfPresent(String.self, forKey: .logOutAlertCancel) ?? "__logOutAlertCancel"
-            logOutAlertConfirm = try container.decodeIfPresent(String.self, forKey: .logOutAlertConfirm) ?? "__logOutAlertConfirm"
-            printerHeader = try container.decodeIfPresent(String.self, forKey: .printerHeader) ?? "__printerHeader"
-            closeButton = try container.decodeIfPresent(String.self, forKey: .closeButton) ?? "__closeButton"
-            appVersionHeader = try container.decodeIfPresent(String.self, forKey: .appVersionHeader) ?? "__appVersionHeader"
-            logoutAlertTitle = try container.decodeIfPresent(String.self, forKey: .logoutAlertTitle) ?? "__logoutAlertTitle"
-            selectPrinterButton = try container.decodeIfPresent(String.self, forKey: .selectPrinterButton) ?? "__selectPrinterButton"
-            logOutAlertMessage = try container.decodeIfPresent(String.self, forKey: .logOutAlertMessage) ?? "__logOutAlertMessage"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.title.stringValue: return title
-            case CodingKeys.logOutButton.stringValue: return logOutButton
-            case CodingKeys.usernameHeader.stringValue: return usernameHeader
-            case CodingKeys.logOutAlertCancel.stringValue: return logOutAlertCancel
-            case CodingKeys.logOutAlertConfirm.stringValue: return logOutAlertConfirm
-            case CodingKeys.printerHeader.stringValue: return printerHeader
-            case CodingKeys.closeButton.stringValue: return closeButton
-            case CodingKeys.appVersionHeader.stringValue: return appVersionHeader
-            case CodingKeys.logoutAlertTitle.stringValue: return logoutAlertTitle
-            case CodingKeys.selectPrinterButton.stringValue: return selectPrinterButton
-            case CodingKeys.logOutAlertMessage.stringValue: return logOutAlertMessage
-            default: return nil
-            }
-        }
-    }
-
     public final class Units: LocalizableSection {
-        public var grm = ""
-        public var e14 = ""
-        public var dlt = ""
         public var mlt = ""
-        public var cmt = ""
-        public var clt = ""
-        public var kgm = ""
-        public var d70 = ""
         public var ltr = ""
         public var h87 = ""
+        public var clt = ""
+        public var e14 = ""
+        public var d70 = ""
+        public var grm = ""
+        public var dlt = ""
+        public var cmt = ""
+        public var kgm = ""
 
         enum CodingKeys: String, CodingKey {
-            case grm
-            case e14
-            case dlt
             case mlt
-            case cmt
-            case clt
-            case kgm
-            case d70
             case ltr
             case h87
+            case clt
+            case e14
+            case d70
+            case grm
+            case dlt
+            case cmt
+            case kgm
         }
 
         public override init() { super.init() }
@@ -344,449 +132,54 @@ public final class Localizations: LocalizableModel {
         public required init(from decoder: Decoder) throws {
             super.init()
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            grm = try container.decodeIfPresent(String.self, forKey: .grm) ?? "__grm"
-            e14 = try container.decodeIfPresent(String.self, forKey: .e14) ?? "__e14"
-            dlt = try container.decodeIfPresent(String.self, forKey: .dlt) ?? "__dlt"
             mlt = try container.decodeIfPresent(String.self, forKey: .mlt) ?? "__mlt"
-            cmt = try container.decodeIfPresent(String.self, forKey: .cmt) ?? "__cmt"
-            clt = try container.decodeIfPresent(String.self, forKey: .clt) ?? "__clt"
-            kgm = try container.decodeIfPresent(String.self, forKey: .kgm) ?? "__kgm"
-            d70 = try container.decodeIfPresent(String.self, forKey: .d70) ?? "__d70"
             ltr = try container.decodeIfPresent(String.self, forKey: .ltr) ?? "__ltr"
             h87 = try container.decodeIfPresent(String.self, forKey: .h87) ?? "__h87"
+            clt = try container.decodeIfPresent(String.self, forKey: .clt) ?? "__clt"
+            e14 = try container.decodeIfPresent(String.self, forKey: .e14) ?? "__e14"
+            d70 = try container.decodeIfPresent(String.self, forKey: .d70) ?? "__d70"
+            grm = try container.decodeIfPresent(String.self, forKey: .grm) ?? "__grm"
+            dlt = try container.decodeIfPresent(String.self, forKey: .dlt) ?? "__dlt"
+            cmt = try container.decodeIfPresent(String.self, forKey: .cmt) ?? "__cmt"
+            kgm = try container.decodeIfPresent(String.self, forKey: .kgm) ?? "__kgm"
         }
 
         public override subscript(key: String) -> String? {
             switch key {
-            case CodingKeys.grm.stringValue: return grm
-            case CodingKeys.e14.stringValue: return e14
-            case CodingKeys.dlt.stringValue: return dlt
             case CodingKeys.mlt.stringValue: return mlt
-            case CodingKeys.cmt.stringValue: return cmt
-            case CodingKeys.clt.stringValue: return clt
-            case CodingKeys.kgm.stringValue: return kgm
-            case CodingKeys.d70.stringValue: return d70
             case CodingKeys.ltr.stringValue: return ltr
             case CodingKeys.h87.stringValue: return h87
-            default: return nil
-            }
-        }
-    }
-
-    public final class Login: LocalizableSection {
-        public var emailPlaceholder = ""
-        public var title = ""
-        public var emailHeader = ""
-        public var errorInvalidCredentials = ""
-        public var resetPasswordMessage = ""
-        public var loginButton = ""
-        public var passwordPlaceholder = ""
-        public var passwordHeader = ""
-        public var appVersionPrefix = ""
-        public var appName = ""
-
-        enum CodingKeys: String, CodingKey {
-            case emailPlaceholder
-            case title
-            case emailHeader
-            case errorInvalidCredentials
-            case resetPasswordMessage
-            case loginButton
-            case passwordPlaceholder
-            case passwordHeader
-            case appVersionPrefix
-            case appName
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            emailPlaceholder = try container.decodeIfPresent(String.self, forKey: .emailPlaceholder) ?? "__emailPlaceholder"
-            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
-            emailHeader = try container.decodeIfPresent(String.self, forKey: .emailHeader) ?? "__emailHeader"
-            errorInvalidCredentials = try container.decodeIfPresent(String.self, forKey: .errorInvalidCredentials) ?? "__errorInvalidCredentials"
-            resetPasswordMessage = try container.decodeIfPresent(String.self, forKey: .resetPasswordMessage) ?? "__resetPasswordMessage"
-            loginButton = try container.decodeIfPresent(String.self, forKey: .loginButton) ?? "__loginButton"
-            passwordPlaceholder = try container.decodeIfPresent(String.self, forKey: .passwordPlaceholder) ?? "__passwordPlaceholder"
-            passwordHeader = try container.decodeIfPresent(String.self, forKey: .passwordHeader) ?? "__passwordHeader"
-            appVersionPrefix = try container.decodeIfPresent(String.self, forKey: .appVersionPrefix) ?? "__appVersionPrefix"
-            appName = try container.decodeIfPresent(String.self, forKey: .appName) ?? "__appName"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.emailPlaceholder.stringValue: return emailPlaceholder
-            case CodingKeys.title.stringValue: return title
-            case CodingKeys.emailHeader.stringValue: return emailHeader
-            case CodingKeys.errorInvalidCredentials.stringValue: return errorInvalidCredentials
-            case CodingKeys.resetPasswordMessage.stringValue: return resetPasswordMessage
-            case CodingKeys.loginButton.stringValue: return loginButton
-            case CodingKeys.passwordPlaceholder.stringValue: return passwordPlaceholder
-            case CodingKeys.passwordHeader.stringValue: return passwordHeader
-            case CodingKeys.appVersionPrefix.stringValue: return appVersionPrefix
-            case CodingKeys.appName.stringValue: return appName
-            default: return nil
-            }
-        }
-    }
-
-    public final class PrinterOutput: LocalizableSection {
-        public var otherHeader = ""
-        public var warmHeader = ""
-        public var orderNumber = ""
-        public var errorDeviceConnectionFailed = ""
-        public var includeCutlery = ""
-        public var noteHeader = ""
-        public var errorNoDeviceFound = ""
-        public var coldHeader = ""
-
-        enum CodingKeys: String, CodingKey {
-            case otherHeader
-            case warmHeader
-            case orderNumber
-            case errorDeviceConnectionFailed
-            case includeCutlery
-            case noteHeader
-            case errorNoDeviceFound
-            case coldHeader
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            otherHeader = try container.decodeIfPresent(String.self, forKey: .otherHeader) ?? "__otherHeader"
-            warmHeader = try container.decodeIfPresent(String.self, forKey: .warmHeader) ?? "__warmHeader"
-            orderNumber = try container.decodeIfPresent(String.self, forKey: .orderNumber) ?? "__orderNumber"
-            errorDeviceConnectionFailed = try container.decodeIfPresent(String.self, forKey: .errorDeviceConnectionFailed) ?? "__errorDeviceConnectionFailed"
-            includeCutlery = try container.decodeIfPresent(String.self, forKey: .includeCutlery) ?? "__includeCutlery"
-            noteHeader = try container.decodeIfPresent(String.self, forKey: .noteHeader) ?? "__noteHeader"
-            errorNoDeviceFound = try container.decodeIfPresent(String.self, forKey: .errorNoDeviceFound) ?? "__errorNoDeviceFound"
-            coldHeader = try container.decodeIfPresent(String.self, forKey: .coldHeader) ?? "__coldHeader"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.otherHeader.stringValue: return otherHeader
-            case CodingKeys.warmHeader.stringValue: return warmHeader
-            case CodingKeys.orderNumber.stringValue: return orderNumber
-            case CodingKeys.errorDeviceConnectionFailed.stringValue: return errorDeviceConnectionFailed
-            case CodingKeys.includeCutlery.stringValue: return includeCutlery
-            case CodingKeys.noteHeader.stringValue: return noteHeader
-            case CodingKeys.errorNoDeviceFound.stringValue: return errorNoDeviceFound
-            case CodingKeys.coldHeader.stringValue: return coldHeader
-            default: return nil
-            }
-        }
-    }
-
-    public final class OrderDetails: LocalizableSection {
-        public var infoTakeOutShopID = ""
-        public var rejectOrderAlertMessage = ""
-        public var pickedUpButton = ""
-        public var deliveryTypeHeader = ""
-        public var completedBanner = ""
-        public var errorStatusUpdateFailed = ""
-        public var sectionHeaderWarmProducts = ""
-        public var errorCouldNotFetchProducts = ""
-        public var sectionHeaderOtherProducts = ""
-        public var includeCutlery = ""
-        public var today = ""
-        public var infoCustomerName = ""
-        public var sectionHeaderOrderStatus = ""
-        public var rejectButton = ""
-        public var infoOrderTime = ""
-        public var sectionHeaderColdProducts = ""
-        public var printButton = ""
-        public var rejectOrderAlertTitle = ""
-        public var infoTakeoutPhone = ""
-        public var infoEmail = ""
-        public var infoAddress = ""
-        public var underPreparationButton = ""
-        public var rejectOrderAlertConfirm = ""
-        public var infoMobilePhone = ""
-        public var infoDeliveryTime = ""
-        public var readyButton = ""
-        public var infoPaymentType = ""
-        public var customerNoteHeader = ""
-        public var pickupTimeHeader = ""
-        public var rejectOrderAlertCancel = ""
-        public var sectionHeaderCustomerInfo = ""
-        public var sectionHeaderTakeout = ""
-        public var outForDeliveryButton = ""
-        public var sectionSubheaderColdProducts = ""
-        public var aPiece = ""
-
-        enum CodingKeys: String, CodingKey {
-            case infoTakeOutShopID
-            case rejectOrderAlertMessage
-            case pickedUpButton
-            case deliveryTypeHeader
-            case completedBanner
-            case errorStatusUpdateFailed
-            case sectionHeaderWarmProducts
-            case errorCouldNotFetchProducts
-            case sectionHeaderOtherProducts
-            case includeCutlery
-            case today
-            case infoCustomerName
-            case sectionHeaderOrderStatus
-            case rejectButton
-            case infoOrderTime
-            case sectionHeaderColdProducts
-            case printButton
-            case rejectOrderAlertTitle
-            case infoTakeoutPhone
-            case infoEmail
-            case infoAddress
-            case underPreparationButton
-            case rejectOrderAlertConfirm
-            case infoMobilePhone
-            case infoDeliveryTime
-            case readyButton
-            case infoPaymentType
-            case customerNoteHeader
-            case pickupTimeHeader
-            case rejectOrderAlertCancel
-            case sectionHeaderCustomerInfo
-            case sectionHeaderTakeout
-            case outForDeliveryButton
-            case sectionSubheaderColdProducts
-            case aPiece
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            infoTakeOutShopID = try container.decodeIfPresent(String.self, forKey: .infoTakeOutShopID) ?? "__infoTakeOutShopID"
-            rejectOrderAlertMessage = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertMessage) ?? "__rejectOrderAlertMessage"
-            pickedUpButton = try container.decodeIfPresent(String.self, forKey: .pickedUpButton) ?? "__pickedUpButton"
-            deliveryTypeHeader = try container.decodeIfPresent(String.self, forKey: .deliveryTypeHeader) ?? "__deliveryTypeHeader"
-            completedBanner = try container.decodeIfPresent(String.self, forKey: .completedBanner) ?? "__completedBanner"
-            errorStatusUpdateFailed = try container.decodeIfPresent(String.self, forKey: .errorStatusUpdateFailed) ?? "__errorStatusUpdateFailed"
-            sectionHeaderWarmProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderWarmProducts) ?? "__sectionHeaderWarmProducts"
-            errorCouldNotFetchProducts = try container.decodeIfPresent(String.self, forKey: .errorCouldNotFetchProducts) ?? "__errorCouldNotFetchProducts"
-            sectionHeaderOtherProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderOtherProducts) ?? "__sectionHeaderOtherProducts"
-            includeCutlery = try container.decodeIfPresent(String.self, forKey: .includeCutlery) ?? "__includeCutlery"
-            today = try container.decodeIfPresent(String.self, forKey: .today) ?? "__today"
-            infoCustomerName = try container.decodeIfPresent(String.self, forKey: .infoCustomerName) ?? "__infoCustomerName"
-            sectionHeaderOrderStatus = try container.decodeIfPresent(String.self, forKey: .sectionHeaderOrderStatus) ?? "__sectionHeaderOrderStatus"
-            rejectButton = try container.decodeIfPresent(String.self, forKey: .rejectButton) ?? "__rejectButton"
-            infoOrderTime = try container.decodeIfPresent(String.self, forKey: .infoOrderTime) ?? "__infoOrderTime"
-            sectionHeaderColdProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderColdProducts) ?? "__sectionHeaderColdProducts"
-            printButton = try container.decodeIfPresent(String.self, forKey: .printButton) ?? "__printButton"
-            rejectOrderAlertTitle = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertTitle) ?? "__rejectOrderAlertTitle"
-            infoTakeoutPhone = try container.decodeIfPresent(String.self, forKey: .infoTakeoutPhone) ?? "__infoTakeoutPhone"
-            infoEmail = try container.decodeIfPresent(String.self, forKey: .infoEmail) ?? "__infoEmail"
-            infoAddress = try container.decodeIfPresent(String.self, forKey: .infoAddress) ?? "__infoAddress"
-            underPreparationButton = try container.decodeIfPresent(String.self, forKey: .underPreparationButton) ?? "__underPreparationButton"
-            rejectOrderAlertConfirm = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertConfirm) ?? "__rejectOrderAlertConfirm"
-            infoMobilePhone = try container.decodeIfPresent(String.self, forKey: .infoMobilePhone) ?? "__infoMobilePhone"
-            infoDeliveryTime = try container.decodeIfPresent(String.self, forKey: .infoDeliveryTime) ?? "__infoDeliveryTime"
-            readyButton = try container.decodeIfPresent(String.self, forKey: .readyButton) ?? "__readyButton"
-            infoPaymentType = try container.decodeIfPresent(String.self, forKey: .infoPaymentType) ?? "__infoPaymentType"
-            customerNoteHeader = try container.decodeIfPresent(String.self, forKey: .customerNoteHeader) ?? "__customerNoteHeader"
-            pickupTimeHeader = try container.decodeIfPresent(String.self, forKey: .pickupTimeHeader) ?? "__pickupTimeHeader"
-            rejectOrderAlertCancel = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertCancel) ?? "__rejectOrderAlertCancel"
-            sectionHeaderCustomerInfo = try container.decodeIfPresent(String.self, forKey: .sectionHeaderCustomerInfo) ?? "__sectionHeaderCustomerInfo"
-            sectionHeaderTakeout = try container.decodeIfPresent(String.self, forKey: .sectionHeaderTakeout) ?? "__sectionHeaderTakeout"
-            outForDeliveryButton = try container.decodeIfPresent(String.self, forKey: .outForDeliveryButton) ?? "__outForDeliveryButton"
-            sectionSubheaderColdProducts = try container.decodeIfPresent(String.self, forKey: .sectionSubheaderColdProducts) ?? "__sectionSubheaderColdProducts"
-            aPiece = try container.decodeIfPresent(String.self, forKey: .aPiece) ?? "__aPiece"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.infoTakeOutShopID.stringValue: return infoTakeOutShopID
-            case CodingKeys.rejectOrderAlertMessage.stringValue: return rejectOrderAlertMessage
-            case CodingKeys.pickedUpButton.stringValue: return pickedUpButton
-            case CodingKeys.deliveryTypeHeader.stringValue: return deliveryTypeHeader
-            case CodingKeys.completedBanner.stringValue: return completedBanner
-            case CodingKeys.errorStatusUpdateFailed.stringValue: return errorStatusUpdateFailed
-            case CodingKeys.sectionHeaderWarmProducts.stringValue: return sectionHeaderWarmProducts
-            case CodingKeys.errorCouldNotFetchProducts.stringValue: return errorCouldNotFetchProducts
-            case CodingKeys.sectionHeaderOtherProducts.stringValue: return sectionHeaderOtherProducts
-            case CodingKeys.includeCutlery.stringValue: return includeCutlery
-            case CodingKeys.today.stringValue: return today
-            case CodingKeys.infoCustomerName.stringValue: return infoCustomerName
-            case CodingKeys.sectionHeaderOrderStatus.stringValue: return sectionHeaderOrderStatus
-            case CodingKeys.rejectButton.stringValue: return rejectButton
-            case CodingKeys.infoOrderTime.stringValue: return infoOrderTime
-            case CodingKeys.sectionHeaderColdProducts.stringValue: return sectionHeaderColdProducts
-            case CodingKeys.printButton.stringValue: return printButton
-            case CodingKeys.rejectOrderAlertTitle.stringValue: return rejectOrderAlertTitle
-            case CodingKeys.infoTakeoutPhone.stringValue: return infoTakeoutPhone
-            case CodingKeys.infoEmail.stringValue: return infoEmail
-            case CodingKeys.infoAddress.stringValue: return infoAddress
-            case CodingKeys.underPreparationButton.stringValue: return underPreparationButton
-            case CodingKeys.rejectOrderAlertConfirm.stringValue: return rejectOrderAlertConfirm
-            case CodingKeys.infoMobilePhone.stringValue: return infoMobilePhone
-            case CodingKeys.infoDeliveryTime.stringValue: return infoDeliveryTime
-            case CodingKeys.readyButton.stringValue: return readyButton
-            case CodingKeys.infoPaymentType.stringValue: return infoPaymentType
-            case CodingKeys.customerNoteHeader.stringValue: return customerNoteHeader
-            case CodingKeys.pickupTimeHeader.stringValue: return pickupTimeHeader
-            case CodingKeys.rejectOrderAlertCancel.stringValue: return rejectOrderAlertCancel
-            case CodingKeys.sectionHeaderCustomerInfo.stringValue: return sectionHeaderCustomerInfo
-            case CodingKeys.sectionHeaderTakeout.stringValue: return sectionHeaderTakeout
-            case CodingKeys.outForDeliveryButton.stringValue: return outForDeliveryButton
-            case CodingKeys.sectionSubheaderColdProducts.stringValue: return sectionSubheaderColdProducts
-            case CodingKeys.aPiece.stringValue: return aPiece
-            default: return nil
-            }
-        }
-    }
-
-    public final class OrderDetailNewOrderSection: LocalizableSection {
-        public var deliveryTimeHeader = ""
-        public var pickedUpInStoreAt = ""
-        public var customerNameHeader = ""
-        public var rejectButton = ""
-        public var phoneNumberHeader = ""
-        public var acceptButton = ""
-        public var pickupTimeHeader = ""
-        public var header = ""
-        public var subheader = ""
-
-        enum CodingKeys: String, CodingKey {
-            case deliveryTimeHeader
-            case pickedUpInStoreAt
-            case customerNameHeader
-            case rejectButton
-            case phoneNumberHeader
-            case acceptButton
-            case pickupTimeHeader
-            case header
-            case subheader
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            deliveryTimeHeader = try container.decodeIfPresent(String.self, forKey: .deliveryTimeHeader) ?? "__deliveryTimeHeader"
-            pickedUpInStoreAt = try container.decodeIfPresent(String.self, forKey: .pickedUpInStoreAt) ?? "__pickedUpInStoreAt"
-            customerNameHeader = try container.decodeIfPresent(String.self, forKey: .customerNameHeader) ?? "__customerNameHeader"
-            rejectButton = try container.decodeIfPresent(String.self, forKey: .rejectButton) ?? "__rejectButton"
-            phoneNumberHeader = try container.decodeIfPresent(String.self, forKey: .phoneNumberHeader) ?? "__phoneNumberHeader"
-            acceptButton = try container.decodeIfPresent(String.self, forKey: .acceptButton) ?? "__acceptButton"
-            pickupTimeHeader = try container.decodeIfPresent(String.self, forKey: .pickupTimeHeader) ?? "__pickupTimeHeader"
-            header = try container.decodeIfPresent(String.self, forKey: .header) ?? "__header"
-            subheader = try container.decodeIfPresent(String.self, forKey: .subheader) ?? "__subheader"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.deliveryTimeHeader.stringValue: return deliveryTimeHeader
-            case CodingKeys.pickedUpInStoreAt.stringValue: return pickedUpInStoreAt
-            case CodingKeys.customerNameHeader.stringValue: return customerNameHeader
-            case CodingKeys.rejectButton.stringValue: return rejectButton
-            case CodingKeys.phoneNumberHeader.stringValue: return phoneNumberHeader
-            case CodingKeys.acceptButton.stringValue: return acceptButton
-            case CodingKeys.pickupTimeHeader.stringValue: return pickupTimeHeader
-            case CodingKeys.header.stringValue: return header
-            case CodingKeys.subheader.stringValue: return subheader
-            default: return nil
-            }
-        }
-    }
-
-    public final class DefaultSection: LocalizableSection {
-        public var cancel = ""
-        public var edit = ""
-        public var retry = ""
-        public var back = ""
-        public var no = ""
-        public var save = ""
-        public var next = ""
-        public var yes = ""
-        public var previous = ""
-        public var settings = ""
-        public var skip = ""
-        public var ok = ""
-        public var later = ""
-
-        enum CodingKeys: String, CodingKey {
-            case cancel
-            case edit
-            case retry
-            case back
-            case no
-            case save
-            case next
-            case yes
-            case previous
-            case settings
-            case skip
-            case ok
-            case later
-        }
-
-        public override init() { super.init() }
-
-        public required init(from decoder: Decoder) throws {
-            super.init()
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            cancel = try container.decodeIfPresent(String.self, forKey: .cancel) ?? "__cancel"
-            edit = try container.decodeIfPresent(String.self, forKey: .edit) ?? "__edit"
-            retry = try container.decodeIfPresent(String.self, forKey: .retry) ?? "__retry"
-            back = try container.decodeIfPresent(String.self, forKey: .back) ?? "__back"
-            no = try container.decodeIfPresent(String.self, forKey: .no) ?? "__no"
-            save = try container.decodeIfPresent(String.self, forKey: .save) ?? "__save"
-            next = try container.decodeIfPresent(String.self, forKey: .next) ?? "__next"
-            yes = try container.decodeIfPresent(String.self, forKey: .yes) ?? "__yes"
-            previous = try container.decodeIfPresent(String.self, forKey: .previous) ?? "__previous"
-            settings = try container.decodeIfPresent(String.self, forKey: .settings) ?? "__settings"
-            skip = try container.decodeIfPresent(String.self, forKey: .skip) ?? "__skip"
-            ok = try container.decodeIfPresent(String.self, forKey: .ok) ?? "__ok"
-            later = try container.decodeIfPresent(String.self, forKey: .later) ?? "__later"
-        }
-
-        public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.cancel.stringValue: return cancel
-            case CodingKeys.edit.stringValue: return edit
-            case CodingKeys.retry.stringValue: return retry
-            case CodingKeys.back.stringValue: return back
-            case CodingKeys.no.stringValue: return no
-            case CodingKeys.save.stringValue: return save
-            case CodingKeys.next.stringValue: return next
-            case CodingKeys.yes.stringValue: return yes
-            case CodingKeys.previous.stringValue: return previous
-            case CodingKeys.settings.stringValue: return settings
-            case CodingKeys.skip.stringValue: return skip
-            case CodingKeys.ok.stringValue: return ok
-            case CodingKeys.later.stringValue: return later
+            case CodingKeys.clt.stringValue: return clt
+            case CodingKeys.e14.stringValue: return e14
+            case CodingKeys.d70.stringValue: return d70
+            case CodingKeys.grm.stringValue: return grm
+            case CodingKeys.dlt.stringValue: return dlt
+            case CodingKeys.cmt.stringValue: return cmt
+            case CodingKeys.kgm.stringValue: return kgm
             default: return nil
             }
         }
     }
 
     public final class Printer: LocalizableSection {
+        public var sectionHeaderNewPrinters = ""
+        public var errorSomethingHappened = ""
+        public var bluetoothHintFooter = ""
+        public var sectionHeaderActivePrinter = ""
+        public var deleteButton = ""
         public var title = ""
         public var connectedSuccessMessage = ""
-        public var bluetoothHintFooter = ""
         public var connectButton = ""
-        public var sectionHeaderNewPrinters = ""
-        public var deleteButton = ""
-        public var errorSomethingHappened = ""
-        public var sectionHeaderActivePrinter = ""
 
         enum CodingKeys: String, CodingKey {
+            case sectionHeaderNewPrinters
+            case errorSomethingHappened
+            case bluetoothHintFooter
+            case sectionHeaderActivePrinter
+            case deleteButton
             case title
             case connectedSuccessMessage
-            case bluetoothHintFooter
             case connectButton
-            case sectionHeaderNewPrinters
-            case deleteButton
-            case errorSomethingHappened
-            case sectionHeaderActivePrinter
         }
 
         public override init() { super.init() }
@@ -794,26 +187,559 @@ public final class Localizations: LocalizableModel {
         public required init(from decoder: Decoder) throws {
             super.init()
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            sectionHeaderNewPrinters = try container.decodeIfPresent(String.self, forKey: .sectionHeaderNewPrinters) ?? "__sectionHeaderNewPrinters"
+            errorSomethingHappened = try container.decodeIfPresent(String.self, forKey: .errorSomethingHappened) ?? "__errorSomethingHappened"
+            bluetoothHintFooter = try container.decodeIfPresent(String.self, forKey: .bluetoothHintFooter) ?? "__bluetoothHintFooter"
+            sectionHeaderActivePrinter = try container.decodeIfPresent(String.self, forKey: .sectionHeaderActivePrinter) ?? "__sectionHeaderActivePrinter"
+            deleteButton = try container.decodeIfPresent(String.self, forKey: .deleteButton) ?? "__deleteButton"
             title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
             connectedSuccessMessage = try container.decodeIfPresent(String.self, forKey: .connectedSuccessMessage) ?? "__connectedSuccessMessage"
-            bluetoothHintFooter = try container.decodeIfPresent(String.self, forKey: .bluetoothHintFooter) ?? "__bluetoothHintFooter"
             connectButton = try container.decodeIfPresent(String.self, forKey: .connectButton) ?? "__connectButton"
-            sectionHeaderNewPrinters = try container.decodeIfPresent(String.self, forKey: .sectionHeaderNewPrinters) ?? "__sectionHeaderNewPrinters"
-            deleteButton = try container.decodeIfPresent(String.self, forKey: .deleteButton) ?? "__deleteButton"
-            errorSomethingHappened = try container.decodeIfPresent(String.self, forKey: .errorSomethingHappened) ?? "__errorSomethingHappened"
-            sectionHeaderActivePrinter = try container.decodeIfPresent(String.self, forKey: .sectionHeaderActivePrinter) ?? "__sectionHeaderActivePrinter"
         }
 
         public override subscript(key: String) -> String? {
             switch key {
+            case CodingKeys.sectionHeaderNewPrinters.stringValue: return sectionHeaderNewPrinters
+            case CodingKeys.errorSomethingHappened.stringValue: return errorSomethingHappened
+            case CodingKeys.bluetoothHintFooter.stringValue: return bluetoothHintFooter
+            case CodingKeys.sectionHeaderActivePrinter.stringValue: return sectionHeaderActivePrinter
+            case CodingKeys.deleteButton.stringValue: return deleteButton
             case CodingKeys.title.stringValue: return title
             case CodingKeys.connectedSuccessMessage.stringValue: return connectedSuccessMessage
-            case CodingKeys.bluetoothHintFooter.stringValue: return bluetoothHintFooter
             case CodingKeys.connectButton.stringValue: return connectButton
-            case CodingKeys.sectionHeaderNewPrinters.stringValue: return sectionHeaderNewPrinters
-            case CodingKeys.deleteButton.stringValue: return deleteButton
-            case CodingKeys.errorSomethingHappened.stringValue: return errorSomethingHappened
-            case CodingKeys.sectionHeaderActivePrinter.stringValue: return sectionHeaderActivePrinter
+            default: return nil
+            }
+        }
+    }
+
+    public final class OrderDetails: LocalizableSection {
+        public var rejectOrderAlertCancel = ""
+        public var sectionHeaderOrderStatus = ""
+        public var infoAddress = ""
+        public var completedBanner = ""
+        public var includeCutlery = ""
+        public var infoMobilePhone = ""
+        public var infoDeliveryTime = ""
+        public var infoCustomerName = ""
+        public var printButton = ""
+        public var underPreparationButton = ""
+        public var rejectOrderAlertConfirm = ""
+        public var rejectOrderAlertTitle = ""
+        public var sectionSubheaderColdProducts = ""
+        public var sectionHeaderTakeout = ""
+        public var deliveryTypeHeader = ""
+        public var infoTakeOutShopID = ""
+        public var rejectButton = ""
+        public var errorCouldNotFetchProducts = ""
+        public var pickupTimeHeader = ""
+        public var sectionHeaderCustomerInfo = ""
+        public var infoEmail = ""
+        public var readyButton = ""
+        public var sectionHeaderOtherProducts = ""
+        public var customerNoteHeader = ""
+        public var sectionHeaderWarmProducts = ""
+        public var outForDeliveryButton = ""
+        public var infoOrderTime = ""
+        public var infoTakeoutPhone = ""
+        public var sectionHeaderColdProducts = ""
+        public var pickedUpButton = ""
+        public var infoPaymentType = ""
+        public var aPiece = ""
+        public var today = ""
+        public var errorStatusUpdateFailed = ""
+        public var rejectOrderAlertMessage = ""
+
+        enum CodingKeys: String, CodingKey {
+            case rejectOrderAlertCancel
+            case sectionHeaderOrderStatus
+            case infoAddress
+            case completedBanner
+            case includeCutlery
+            case infoMobilePhone
+            case infoDeliveryTime
+            case infoCustomerName
+            case printButton
+            case underPreparationButton
+            case rejectOrderAlertConfirm
+            case rejectOrderAlertTitle
+            case sectionSubheaderColdProducts
+            case sectionHeaderTakeout
+            case deliveryTypeHeader
+            case infoTakeOutShopID
+            case rejectButton
+            case errorCouldNotFetchProducts
+            case pickupTimeHeader
+            case sectionHeaderCustomerInfo
+            case infoEmail
+            case readyButton
+            case sectionHeaderOtherProducts
+            case customerNoteHeader
+            case sectionHeaderWarmProducts
+            case outForDeliveryButton
+            case infoOrderTime
+            case infoTakeoutPhone
+            case sectionHeaderColdProducts
+            case pickedUpButton
+            case infoPaymentType
+            case aPiece
+            case today
+            case errorStatusUpdateFailed
+            case rejectOrderAlertMessage
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            rejectOrderAlertCancel = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertCancel) ?? "__rejectOrderAlertCancel"
+            sectionHeaderOrderStatus = try container.decodeIfPresent(String.self, forKey: .sectionHeaderOrderStatus) ?? "__sectionHeaderOrderStatus"
+            infoAddress = try container.decodeIfPresent(String.self, forKey: .infoAddress) ?? "__infoAddress"
+            completedBanner = try container.decodeIfPresent(String.self, forKey: .completedBanner) ?? "__completedBanner"
+            includeCutlery = try container.decodeIfPresent(String.self, forKey: .includeCutlery) ?? "__includeCutlery"
+            infoMobilePhone = try container.decodeIfPresent(String.self, forKey: .infoMobilePhone) ?? "__infoMobilePhone"
+            infoDeliveryTime = try container.decodeIfPresent(String.self, forKey: .infoDeliveryTime) ?? "__infoDeliveryTime"
+            infoCustomerName = try container.decodeIfPresent(String.self, forKey: .infoCustomerName) ?? "__infoCustomerName"
+            printButton = try container.decodeIfPresent(String.self, forKey: .printButton) ?? "__printButton"
+            underPreparationButton = try container.decodeIfPresent(String.self, forKey: .underPreparationButton) ?? "__underPreparationButton"
+            rejectOrderAlertConfirm = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertConfirm) ?? "__rejectOrderAlertConfirm"
+            rejectOrderAlertTitle = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertTitle) ?? "__rejectOrderAlertTitle"
+            sectionSubheaderColdProducts = try container.decodeIfPresent(String.self, forKey: .sectionSubheaderColdProducts) ?? "__sectionSubheaderColdProducts"
+            sectionHeaderTakeout = try container.decodeIfPresent(String.self, forKey: .sectionHeaderTakeout) ?? "__sectionHeaderTakeout"
+            deliveryTypeHeader = try container.decodeIfPresent(String.self, forKey: .deliveryTypeHeader) ?? "__deliveryTypeHeader"
+            infoTakeOutShopID = try container.decodeIfPresent(String.self, forKey: .infoTakeOutShopID) ?? "__infoTakeOutShopID"
+            rejectButton = try container.decodeIfPresent(String.self, forKey: .rejectButton) ?? "__rejectButton"
+            errorCouldNotFetchProducts = try container.decodeIfPresent(String.self, forKey: .errorCouldNotFetchProducts) ?? "__errorCouldNotFetchProducts"
+            pickupTimeHeader = try container.decodeIfPresent(String.self, forKey: .pickupTimeHeader) ?? "__pickupTimeHeader"
+            sectionHeaderCustomerInfo = try container.decodeIfPresent(String.self, forKey: .sectionHeaderCustomerInfo) ?? "__sectionHeaderCustomerInfo"
+            infoEmail = try container.decodeIfPresent(String.self, forKey: .infoEmail) ?? "__infoEmail"
+            readyButton = try container.decodeIfPresent(String.self, forKey: .readyButton) ?? "__readyButton"
+            sectionHeaderOtherProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderOtherProducts) ?? "__sectionHeaderOtherProducts"
+            customerNoteHeader = try container.decodeIfPresent(String.self, forKey: .customerNoteHeader) ?? "__customerNoteHeader"
+            sectionHeaderWarmProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderWarmProducts) ?? "__sectionHeaderWarmProducts"
+            outForDeliveryButton = try container.decodeIfPresent(String.self, forKey: .outForDeliveryButton) ?? "__outForDeliveryButton"
+            infoOrderTime = try container.decodeIfPresent(String.self, forKey: .infoOrderTime) ?? "__infoOrderTime"
+            infoTakeoutPhone = try container.decodeIfPresent(String.self, forKey: .infoTakeoutPhone) ?? "__infoTakeoutPhone"
+            sectionHeaderColdProducts = try container.decodeIfPresent(String.self, forKey: .sectionHeaderColdProducts) ?? "__sectionHeaderColdProducts"
+            pickedUpButton = try container.decodeIfPresent(String.self, forKey: .pickedUpButton) ?? "__pickedUpButton"
+            infoPaymentType = try container.decodeIfPresent(String.self, forKey: .infoPaymentType) ?? "__infoPaymentType"
+            aPiece = try container.decodeIfPresent(String.self, forKey: .aPiece) ?? "__aPiece"
+            today = try container.decodeIfPresent(String.self, forKey: .today) ?? "__today"
+            errorStatusUpdateFailed = try container.decodeIfPresent(String.self, forKey: .errorStatusUpdateFailed) ?? "__errorStatusUpdateFailed"
+            rejectOrderAlertMessage = try container.decodeIfPresent(String.self, forKey: .rejectOrderAlertMessage) ?? "__rejectOrderAlertMessage"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.rejectOrderAlertCancel.stringValue: return rejectOrderAlertCancel
+            case CodingKeys.sectionHeaderOrderStatus.stringValue: return sectionHeaderOrderStatus
+            case CodingKeys.infoAddress.stringValue: return infoAddress
+            case CodingKeys.completedBanner.stringValue: return completedBanner
+            case CodingKeys.includeCutlery.stringValue: return includeCutlery
+            case CodingKeys.infoMobilePhone.stringValue: return infoMobilePhone
+            case CodingKeys.infoDeliveryTime.stringValue: return infoDeliveryTime
+            case CodingKeys.infoCustomerName.stringValue: return infoCustomerName
+            case CodingKeys.printButton.stringValue: return printButton
+            case CodingKeys.underPreparationButton.stringValue: return underPreparationButton
+            case CodingKeys.rejectOrderAlertConfirm.stringValue: return rejectOrderAlertConfirm
+            case CodingKeys.rejectOrderAlertTitle.stringValue: return rejectOrderAlertTitle
+            case CodingKeys.sectionSubheaderColdProducts.stringValue: return sectionSubheaderColdProducts
+            case CodingKeys.sectionHeaderTakeout.stringValue: return sectionHeaderTakeout
+            case CodingKeys.deliveryTypeHeader.stringValue: return deliveryTypeHeader
+            case CodingKeys.infoTakeOutShopID.stringValue: return infoTakeOutShopID
+            case CodingKeys.rejectButton.stringValue: return rejectButton
+            case CodingKeys.errorCouldNotFetchProducts.stringValue: return errorCouldNotFetchProducts
+            case CodingKeys.pickupTimeHeader.stringValue: return pickupTimeHeader
+            case CodingKeys.sectionHeaderCustomerInfo.stringValue: return sectionHeaderCustomerInfo
+            case CodingKeys.infoEmail.stringValue: return infoEmail
+            case CodingKeys.readyButton.stringValue: return readyButton
+            case CodingKeys.sectionHeaderOtherProducts.stringValue: return sectionHeaderOtherProducts
+            case CodingKeys.customerNoteHeader.stringValue: return customerNoteHeader
+            case CodingKeys.sectionHeaderWarmProducts.stringValue: return sectionHeaderWarmProducts
+            case CodingKeys.outForDeliveryButton.stringValue: return outForDeliveryButton
+            case CodingKeys.infoOrderTime.stringValue: return infoOrderTime
+            case CodingKeys.infoTakeoutPhone.stringValue: return infoTakeoutPhone
+            case CodingKeys.sectionHeaderColdProducts.stringValue: return sectionHeaderColdProducts
+            case CodingKeys.pickedUpButton.stringValue: return pickedUpButton
+            case CodingKeys.infoPaymentType.stringValue: return infoPaymentType
+            case CodingKeys.aPiece.stringValue: return aPiece
+            case CodingKeys.today.stringValue: return today
+            case CodingKeys.errorStatusUpdateFailed.stringValue: return errorStatusUpdateFailed
+            case CodingKeys.rejectOrderAlertMessage.stringValue: return rejectOrderAlertMessage
+            default: return nil
+            }
+        }
+    }
+
+    public final class Dashboard: LocalizableSection {
+        public var columnIncomingEmpty = ""
+        public var itemsPlural = ""
+        public var columnReadyEmpty = ""
+        public var sectionToday = ""
+        public var itemsSingular = ""
+        public var sectionTomorrow = ""
+        public var columnAccepted = ""
+        public var columnOutForDelivery = ""
+        public var columnOutForDeliveryEmpty = ""
+        public var columnIncoming = ""
+        public var columnAcceptedEmpty = ""
+        public var sectionLater = ""
+        public var columnDoneTodayEmpty = ""
+        public var columnDoneToday = ""
+        public var columnReady = ""
+        public var allOrdersButton = ""
+
+        enum CodingKeys: String, CodingKey {
+            case columnIncomingEmpty
+            case itemsPlural
+            case columnReadyEmpty
+            case sectionToday
+            case itemsSingular
+            case sectionTomorrow
+            case columnAccepted
+            case columnOutForDelivery
+            case columnOutForDeliveryEmpty
+            case columnIncoming
+            case columnAcceptedEmpty
+            case sectionLater
+            case columnDoneTodayEmpty
+            case columnDoneToday
+            case columnReady
+            case allOrdersButton
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            columnIncomingEmpty = try container.decodeIfPresent(String.self, forKey: .columnIncomingEmpty) ?? "__columnIncomingEmpty"
+            itemsPlural = try container.decodeIfPresent(String.self, forKey: .itemsPlural) ?? "__itemsPlural"
+            columnReadyEmpty = try container.decodeIfPresent(String.self, forKey: .columnReadyEmpty) ?? "__columnReadyEmpty"
+            sectionToday = try container.decodeIfPresent(String.self, forKey: .sectionToday) ?? "__sectionToday"
+            itemsSingular = try container.decodeIfPresent(String.self, forKey: .itemsSingular) ?? "__itemsSingular"
+            sectionTomorrow = try container.decodeIfPresent(String.self, forKey: .sectionTomorrow) ?? "__sectionTomorrow"
+            columnAccepted = try container.decodeIfPresent(String.self, forKey: .columnAccepted) ?? "__columnAccepted"
+            columnOutForDelivery = try container.decodeIfPresent(String.self, forKey: .columnOutForDelivery) ?? "__columnOutForDelivery"
+            columnOutForDeliveryEmpty = try container.decodeIfPresent(String.self, forKey: .columnOutForDeliveryEmpty) ?? "__columnOutForDeliveryEmpty"
+            columnIncoming = try container.decodeIfPresent(String.self, forKey: .columnIncoming) ?? "__columnIncoming"
+            columnAcceptedEmpty = try container.decodeIfPresent(String.self, forKey: .columnAcceptedEmpty) ?? "__columnAcceptedEmpty"
+            sectionLater = try container.decodeIfPresent(String.self, forKey: .sectionLater) ?? "__sectionLater"
+            columnDoneTodayEmpty = try container.decodeIfPresent(String.self, forKey: .columnDoneTodayEmpty) ?? "__columnDoneTodayEmpty"
+            columnDoneToday = try container.decodeIfPresent(String.self, forKey: .columnDoneToday) ?? "__columnDoneToday"
+            columnReady = try container.decodeIfPresent(String.self, forKey: .columnReady) ?? "__columnReady"
+            allOrdersButton = try container.decodeIfPresent(String.self, forKey: .allOrdersButton) ?? "__allOrdersButton"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.columnIncomingEmpty.stringValue: return columnIncomingEmpty
+            case CodingKeys.itemsPlural.stringValue: return itemsPlural
+            case CodingKeys.columnReadyEmpty.stringValue: return columnReadyEmpty
+            case CodingKeys.sectionToday.stringValue: return sectionToday
+            case CodingKeys.itemsSingular.stringValue: return itemsSingular
+            case CodingKeys.sectionTomorrow.stringValue: return sectionTomorrow
+            case CodingKeys.columnAccepted.stringValue: return columnAccepted
+            case CodingKeys.columnOutForDelivery.stringValue: return columnOutForDelivery
+            case CodingKeys.columnOutForDeliveryEmpty.stringValue: return columnOutForDeliveryEmpty
+            case CodingKeys.columnIncoming.stringValue: return columnIncoming
+            case CodingKeys.columnAcceptedEmpty.stringValue: return columnAcceptedEmpty
+            case CodingKeys.sectionLater.stringValue: return sectionLater
+            case CodingKeys.columnDoneTodayEmpty.stringValue: return columnDoneTodayEmpty
+            case CodingKeys.columnDoneToday.stringValue: return columnDoneToday
+            case CodingKeys.columnReady.stringValue: return columnReady
+            case CodingKeys.allOrdersButton.stringValue: return allOrdersButton
+            default: return nil
+            }
+        }
+    }
+
+    public final class Error: LocalizableSection {
+        public var authenticationError = ""
+        public var errorTitle = ""
+        public var serverError = ""
+        public var connectionError = ""
+        public var unknownError = ""
+
+        enum CodingKeys: String, CodingKey {
+            case authenticationError
+            case errorTitle
+            case serverError
+            case connectionError
+            case unknownError
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            authenticationError = try container.decodeIfPresent(String.self, forKey: .authenticationError) ?? "__authenticationError"
+            errorTitle = try container.decodeIfPresent(String.self, forKey: .errorTitle) ?? "__errorTitle"
+            serverError = try container.decodeIfPresent(String.self, forKey: .serverError) ?? "__serverError"
+            connectionError = try container.decodeIfPresent(String.self, forKey: .connectionError) ?? "__connectionError"
+            unknownError = try container.decodeIfPresent(String.self, forKey: .unknownError) ?? "__unknownError"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.authenticationError.stringValue: return authenticationError
+            case CodingKeys.errorTitle.stringValue: return errorTitle
+            case CodingKeys.serverError.stringValue: return serverError
+            case CodingKeys.connectionError.stringValue: return connectionError
+            case CodingKeys.unknownError.stringValue: return unknownError
+            default: return nil
+            }
+        }
+    }
+
+    public final class SearchOrders: LocalizableSection {
+        public var orderNumberHeader = ""
+        public var statusNew = ""
+        public var emptyMessage = ""
+        public var title = ""
+        public var statusReady = ""
+        public var orderStatusHeader = ""
+        public var customerNameHeader = ""
+        public var orderDateHeader = ""
+        public var statusRejected = ""
+        public var statusCompleted = ""
+        public var statusShipped = ""
+        public var searchfieldPlaceholder = ""
+        public var statusAccepted = ""
+
+        enum CodingKeys: String, CodingKey {
+            case orderNumberHeader
+            case statusNew
+            case emptyMessage
+            case title
+            case statusReady
+            case orderStatusHeader
+            case customerNameHeader
+            case orderDateHeader
+            case statusRejected
+            case statusCompleted
+            case statusShipped
+            case searchfieldPlaceholder
+            case statusAccepted
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            orderNumberHeader = try container.decodeIfPresent(String.self, forKey: .orderNumberHeader) ?? "__orderNumberHeader"
+            statusNew = try container.decodeIfPresent(String.self, forKey: .statusNew) ?? "__statusNew"
+            emptyMessage = try container.decodeIfPresent(String.self, forKey: .emptyMessage) ?? "__emptyMessage"
+            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
+            statusReady = try container.decodeIfPresent(String.self, forKey: .statusReady) ?? "__statusReady"
+            orderStatusHeader = try container.decodeIfPresent(String.self, forKey: .orderStatusHeader) ?? "__orderStatusHeader"
+            customerNameHeader = try container.decodeIfPresent(String.self, forKey: .customerNameHeader) ?? "__customerNameHeader"
+            orderDateHeader = try container.decodeIfPresent(String.self, forKey: .orderDateHeader) ?? "__orderDateHeader"
+            statusRejected = try container.decodeIfPresent(String.self, forKey: .statusRejected) ?? "__statusRejected"
+            statusCompleted = try container.decodeIfPresent(String.self, forKey: .statusCompleted) ?? "__statusCompleted"
+            statusShipped = try container.decodeIfPresent(String.self, forKey: .statusShipped) ?? "__statusShipped"
+            searchfieldPlaceholder = try container.decodeIfPresent(String.self, forKey: .searchfieldPlaceholder) ?? "__searchfieldPlaceholder"
+            statusAccepted = try container.decodeIfPresent(String.self, forKey: .statusAccepted) ?? "__statusAccepted"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.orderNumberHeader.stringValue: return orderNumberHeader
+            case CodingKeys.statusNew.stringValue: return statusNew
+            case CodingKeys.emptyMessage.stringValue: return emptyMessage
+            case CodingKeys.title.stringValue: return title
+            case CodingKeys.statusReady.stringValue: return statusReady
+            case CodingKeys.orderStatusHeader.stringValue: return orderStatusHeader
+            case CodingKeys.customerNameHeader.stringValue: return customerNameHeader
+            case CodingKeys.orderDateHeader.stringValue: return orderDateHeader
+            case CodingKeys.statusRejected.stringValue: return statusRejected
+            case CodingKeys.statusCompleted.stringValue: return statusCompleted
+            case CodingKeys.statusShipped.stringValue: return statusShipped
+            case CodingKeys.searchfieldPlaceholder.stringValue: return searchfieldPlaceholder
+            case CodingKeys.statusAccepted.stringValue: return statusAccepted
+            default: return nil
+            }
+        }
+    }
+
+    public final class PrinterOutput: LocalizableSection {
+        public var orderNumber = ""
+        public var coldHeader = ""
+        public var errorDeviceConnectionFailed = ""
+        public var errorNoDeviceFound = ""
+        public var otherHeader = ""
+        public var noteHeader = ""
+        public var includeCutlery = ""
+        public var warmHeader = ""
+
+        enum CodingKeys: String, CodingKey {
+            case orderNumber
+            case coldHeader
+            case errorDeviceConnectionFailed
+            case errorNoDeviceFound
+            case otherHeader
+            case noteHeader
+            case includeCutlery
+            case warmHeader
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            orderNumber = try container.decodeIfPresent(String.self, forKey: .orderNumber) ?? "__orderNumber"
+            coldHeader = try container.decodeIfPresent(String.self, forKey: .coldHeader) ?? "__coldHeader"
+            errorDeviceConnectionFailed = try container.decodeIfPresent(String.self, forKey: .errorDeviceConnectionFailed) ?? "__errorDeviceConnectionFailed"
+            errorNoDeviceFound = try container.decodeIfPresent(String.self, forKey: .errorNoDeviceFound) ?? "__errorNoDeviceFound"
+            otherHeader = try container.decodeIfPresent(String.self, forKey: .otherHeader) ?? "__otherHeader"
+            noteHeader = try container.decodeIfPresent(String.self, forKey: .noteHeader) ?? "__noteHeader"
+            includeCutlery = try container.decodeIfPresent(String.self, forKey: .includeCutlery) ?? "__includeCutlery"
+            warmHeader = try container.decodeIfPresent(String.self, forKey: .warmHeader) ?? "__warmHeader"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.orderNumber.stringValue: return orderNumber
+            case CodingKeys.coldHeader.stringValue: return coldHeader
+            case CodingKeys.errorDeviceConnectionFailed.stringValue: return errorDeviceConnectionFailed
+            case CodingKeys.errorNoDeviceFound.stringValue: return errorNoDeviceFound
+            case CodingKeys.otherHeader.stringValue: return otherHeader
+            case CodingKeys.noteHeader.stringValue: return noteHeader
+            case CodingKeys.includeCutlery.stringValue: return includeCutlery
+            case CodingKeys.warmHeader.stringValue: return warmHeader
+            default: return nil
+            }
+        }
+    }
+
+    public final class Login: LocalizableSection {
+        public var passwordPlaceholder = ""
+        public var resetPasswordMessage = ""
+        public var emailPlaceholder = ""
+        public var appVersionPrefix = ""
+        public var appName = ""
+        public var errorInvalidCredentials = ""
+        public var emailHeader = ""
+        public var title = ""
+        public var passwordHeader = ""
+        public var loginButton = ""
+
+        enum CodingKeys: String, CodingKey {
+            case passwordPlaceholder
+            case resetPasswordMessage
+            case emailPlaceholder
+            case appVersionPrefix
+            case appName
+            case errorInvalidCredentials
+            case emailHeader
+            case title
+            case passwordHeader
+            case loginButton
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            passwordPlaceholder = try container.decodeIfPresent(String.self, forKey: .passwordPlaceholder) ?? "__passwordPlaceholder"
+            resetPasswordMessage = try container.decodeIfPresent(String.self, forKey: .resetPasswordMessage) ?? "__resetPasswordMessage"
+            emailPlaceholder = try container.decodeIfPresent(String.self, forKey: .emailPlaceholder) ?? "__emailPlaceholder"
+            appVersionPrefix = try container.decodeIfPresent(String.self, forKey: .appVersionPrefix) ?? "__appVersionPrefix"
+            appName = try container.decodeIfPresent(String.self, forKey: .appName) ?? "__appName"
+            errorInvalidCredentials = try container.decodeIfPresent(String.self, forKey: .errorInvalidCredentials) ?? "__errorInvalidCredentials"
+            emailHeader = try container.decodeIfPresent(String.self, forKey: .emailHeader) ?? "__emailHeader"
+            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
+            passwordHeader = try container.decodeIfPresent(String.self, forKey: .passwordHeader) ?? "__passwordHeader"
+            loginButton = try container.decodeIfPresent(String.self, forKey: .loginButton) ?? "__loginButton"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.passwordPlaceholder.stringValue: return passwordPlaceholder
+            case CodingKeys.resetPasswordMessage.stringValue: return resetPasswordMessage
+            case CodingKeys.emailPlaceholder.stringValue: return emailPlaceholder
+            case CodingKeys.appVersionPrefix.stringValue: return appVersionPrefix
+            case CodingKeys.appName.stringValue: return appName
+            case CodingKeys.errorInvalidCredentials.stringValue: return errorInvalidCredentials
+            case CodingKeys.emailHeader.stringValue: return emailHeader
+            case CodingKeys.title.stringValue: return title
+            case CodingKeys.passwordHeader.stringValue: return passwordHeader
+            case CodingKeys.loginButton.stringValue: return loginButton
+            default: return nil
+            }
+        }
+    }
+
+    public final class DefaultSection: LocalizableSection {
+        public var no = ""
+        public var previous = ""
+        public var settings = ""
+        public var edit = ""
+        public var later = ""
+        public var back = ""
+        public var yes = ""
+        public var ok = ""
+        public var retry = ""
+        public var cancel = ""
+        public var skip = ""
+        public var save = ""
+        public var next = ""
+
+        enum CodingKeys: String, CodingKey {
+            case no
+            case previous
+            case settings
+            case edit
+            case later
+            case back
+            case yes
+            case ok
+            case retry
+            case cancel
+            case skip
+            case save
+            case next
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            no = try container.decodeIfPresent(String.self, forKey: .no) ?? "__no"
+            previous = try container.decodeIfPresent(String.self, forKey: .previous) ?? "__previous"
+            settings = try container.decodeIfPresent(String.self, forKey: .settings) ?? "__settings"
+            edit = try container.decodeIfPresent(String.self, forKey: .edit) ?? "__edit"
+            later = try container.decodeIfPresent(String.self, forKey: .later) ?? "__later"
+            back = try container.decodeIfPresent(String.self, forKey: .back) ?? "__back"
+            yes = try container.decodeIfPresent(String.self, forKey: .yes) ?? "__yes"
+            ok = try container.decodeIfPresent(String.self, forKey: .ok) ?? "__ok"
+            retry = try container.decodeIfPresent(String.self, forKey: .retry) ?? "__retry"
+            cancel = try container.decodeIfPresent(String.self, forKey: .cancel) ?? "__cancel"
+            skip = try container.decodeIfPresent(String.self, forKey: .skip) ?? "__skip"
+            save = try container.decodeIfPresent(String.self, forKey: .save) ?? "__save"
+            next = try container.decodeIfPresent(String.self, forKey: .next) ?? "__next"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.no.stringValue: return no
+            case CodingKeys.previous.stringValue: return previous
+            case CodingKeys.settings.stringValue: return settings
+            case CodingKeys.edit.stringValue: return edit
+            case CodingKeys.later.stringValue: return later
+            case CodingKeys.back.stringValue: return back
+            case CodingKeys.yes.stringValue: return yes
+            case CodingKeys.ok.stringValue: return ok
+            case CodingKeys.retry.stringValue: return retry
+            case CodingKeys.cancel.stringValue: return cancel
+            case CodingKeys.skip.stringValue: return skip
+            case CodingKeys.save.stringValue: return save
+            case CodingKeys.next.stringValue: return next
             default: return nil
             }
         }
@@ -842,35 +768,13 @@ public final class Localizations: LocalizableModel {
         }
     }
 
-    public final class SearchOrders: LocalizableSection {
-        public var emptyMessage = ""
-        public var statusShipped = ""
-        public var statusAccepted = ""
-        public var title = ""
-        public var orderNumberHeader = ""
-        public var orderDateHeader = ""
-        public var statusReady = ""
-        public var statusRejected = ""
-        public var searchfieldPlaceholder = ""
-        public var statusNew = ""
-        public var customerNameHeader = ""
-        public var statusCompleted = ""
-        public var orderStatusHeader = ""
+    public final class DeliveryType: LocalizableSection {
+        public var delivery = ""
+        public var collect = ""
 
         enum CodingKeys: String, CodingKey {
-            case emptyMessage
-            case statusShipped
-            case statusAccepted
-            case title
-            case orderNumberHeader
-            case orderDateHeader
-            case statusReady
-            case statusRejected
-            case searchfieldPlaceholder
-            case statusNew
-            case customerNameHeader
-            case statusCompleted
-            case orderStatusHeader
+            case delivery
+            case collect
         }
 
         public override init() { super.init() }
@@ -878,36 +782,132 @@ public final class Localizations: LocalizableModel {
         public required init(from decoder: Decoder) throws {
             super.init()
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            emptyMessage = try container.decodeIfPresent(String.self, forKey: .emptyMessage) ?? "__emptyMessage"
-            statusShipped = try container.decodeIfPresent(String.self, forKey: .statusShipped) ?? "__statusShipped"
-            statusAccepted = try container.decodeIfPresent(String.self, forKey: .statusAccepted) ?? "__statusAccepted"
-            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
-            orderNumberHeader = try container.decodeIfPresent(String.self, forKey: .orderNumberHeader) ?? "__orderNumberHeader"
-            orderDateHeader = try container.decodeIfPresent(String.self, forKey: .orderDateHeader) ?? "__orderDateHeader"
-            statusReady = try container.decodeIfPresent(String.self, forKey: .statusReady) ?? "__statusReady"
-            statusRejected = try container.decodeIfPresent(String.self, forKey: .statusRejected) ?? "__statusRejected"
-            searchfieldPlaceholder = try container.decodeIfPresent(String.self, forKey: .searchfieldPlaceholder) ?? "__searchfieldPlaceholder"
-            statusNew = try container.decodeIfPresent(String.self, forKey: .statusNew) ?? "__statusNew"
-            customerNameHeader = try container.decodeIfPresent(String.self, forKey: .customerNameHeader) ?? "__customerNameHeader"
-            statusCompleted = try container.decodeIfPresent(String.self, forKey: .statusCompleted) ?? "__statusCompleted"
-            orderStatusHeader = try container.decodeIfPresent(String.self, forKey: .orderStatusHeader) ?? "__orderStatusHeader"
+            delivery = try container.decodeIfPresent(String.self, forKey: .delivery) ?? "__delivery"
+            collect = try container.decodeIfPresent(String.self, forKey: .collect) ?? "__collect"
         }
 
         public override subscript(key: String) -> String? {
             switch key {
-            case CodingKeys.emptyMessage.stringValue: return emptyMessage
-            case CodingKeys.statusShipped.stringValue: return statusShipped
-            case CodingKeys.statusAccepted.stringValue: return statusAccepted
-            case CodingKeys.title.stringValue: return title
-            case CodingKeys.orderNumberHeader.stringValue: return orderNumberHeader
-            case CodingKeys.orderDateHeader.stringValue: return orderDateHeader
-            case CodingKeys.statusReady.stringValue: return statusReady
-            case CodingKeys.statusRejected.stringValue: return statusRejected
-            case CodingKeys.searchfieldPlaceholder.stringValue: return searchfieldPlaceholder
-            case CodingKeys.statusNew.stringValue: return statusNew
+            case CodingKeys.delivery.stringValue: return delivery
+            case CodingKeys.collect.stringValue: return collect
+            default: return nil
+            }
+        }
+    }
+
+    public final class OrderDetailNewOrderSection: LocalizableSection {
+        public var acceptButton = ""
+        public var pickupTimeHeader = ""
+        public var pickedUpInStoreAt = ""
+        public var subheader = ""
+        public var header = ""
+        public var deliveryTimeHeader = ""
+        public var rejectButton = ""
+        public var phoneNumberHeader = ""
+        public var customerNameHeader = ""
+
+        enum CodingKeys: String, CodingKey {
+            case acceptButton
+            case pickupTimeHeader
+            case pickedUpInStoreAt
+            case subheader
+            case header
+            case deliveryTimeHeader
+            case rejectButton
+            case phoneNumberHeader
+            case customerNameHeader
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            acceptButton = try container.decodeIfPresent(String.self, forKey: .acceptButton) ?? "__acceptButton"
+            pickupTimeHeader = try container.decodeIfPresent(String.self, forKey: .pickupTimeHeader) ?? "__pickupTimeHeader"
+            pickedUpInStoreAt = try container.decodeIfPresent(String.self, forKey: .pickedUpInStoreAt) ?? "__pickedUpInStoreAt"
+            subheader = try container.decodeIfPresent(String.self, forKey: .subheader) ?? "__subheader"
+            header = try container.decodeIfPresent(String.self, forKey: .header) ?? "__header"
+            deliveryTimeHeader = try container.decodeIfPresent(String.self, forKey: .deliveryTimeHeader) ?? "__deliveryTimeHeader"
+            rejectButton = try container.decodeIfPresent(String.self, forKey: .rejectButton) ?? "__rejectButton"
+            phoneNumberHeader = try container.decodeIfPresent(String.self, forKey: .phoneNumberHeader) ?? "__phoneNumberHeader"
+            customerNameHeader = try container.decodeIfPresent(String.self, forKey: .customerNameHeader) ?? "__customerNameHeader"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.acceptButton.stringValue: return acceptButton
+            case CodingKeys.pickupTimeHeader.stringValue: return pickupTimeHeader
+            case CodingKeys.pickedUpInStoreAt.stringValue: return pickedUpInStoreAt
+            case CodingKeys.subheader.stringValue: return subheader
+            case CodingKeys.header.stringValue: return header
+            case CodingKeys.deliveryTimeHeader.stringValue: return deliveryTimeHeader
+            case CodingKeys.rejectButton.stringValue: return rejectButton
+            case CodingKeys.phoneNumberHeader.stringValue: return phoneNumberHeader
             case CodingKeys.customerNameHeader.stringValue: return customerNameHeader
-            case CodingKeys.statusCompleted.stringValue: return statusCompleted
-            case CodingKeys.orderStatusHeader.stringValue: return orderStatusHeader
+            default: return nil
+            }
+        }
+    }
+
+    public final class Settings: LocalizableSection {
+        public var logOutAlertCancel = ""
+        public var selectPrinterButton = ""
+        public var logOutButton = ""
+        public var logOutAlertMessage = ""
+        public var appVersionHeader = ""
+        public var logoutAlertTitle = ""
+        public var logOutAlertConfirm = ""
+        public var printerHeader = ""
+        public var usernameHeader = ""
+        public var closeButton = ""
+        public var title = ""
+
+        enum CodingKeys: String, CodingKey {
+            case logOutAlertCancel
+            case selectPrinterButton
+            case logOutButton
+            case logOutAlertMessage
+            case appVersionHeader
+            case logoutAlertTitle
+            case logOutAlertConfirm
+            case printerHeader
+            case usernameHeader
+            case closeButton
+            case title
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            logOutAlertCancel = try container.decodeIfPresent(String.self, forKey: .logOutAlertCancel) ?? "__logOutAlertCancel"
+            selectPrinterButton = try container.decodeIfPresent(String.self, forKey: .selectPrinterButton) ?? "__selectPrinterButton"
+            logOutButton = try container.decodeIfPresent(String.self, forKey: .logOutButton) ?? "__logOutButton"
+            logOutAlertMessage = try container.decodeIfPresent(String.self, forKey: .logOutAlertMessage) ?? "__logOutAlertMessage"
+            appVersionHeader = try container.decodeIfPresent(String.self, forKey: .appVersionHeader) ?? "__appVersionHeader"
+            logoutAlertTitle = try container.decodeIfPresent(String.self, forKey: .logoutAlertTitle) ?? "__logoutAlertTitle"
+            logOutAlertConfirm = try container.decodeIfPresent(String.self, forKey: .logOutAlertConfirm) ?? "__logOutAlertConfirm"
+            printerHeader = try container.decodeIfPresent(String.self, forKey: .printerHeader) ?? "__printerHeader"
+            usernameHeader = try container.decodeIfPresent(String.self, forKey: .usernameHeader) ?? "__usernameHeader"
+            closeButton = try container.decodeIfPresent(String.self, forKey: .closeButton) ?? "__closeButton"
+            title = try container.decodeIfPresent(String.self, forKey: .title) ?? "__title"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.logOutAlertCancel.stringValue: return logOutAlertCancel
+            case CodingKeys.selectPrinterButton.stringValue: return selectPrinterButton
+            case CodingKeys.logOutButton.stringValue: return logOutButton
+            case CodingKeys.logOutAlertMessage.stringValue: return logOutAlertMessage
+            case CodingKeys.appVersionHeader.stringValue: return appVersionHeader
+            case CodingKeys.logoutAlertTitle.stringValue: return logoutAlertTitle
+            case CodingKeys.logOutAlertConfirm.stringValue: return logOutAlertConfirm
+            case CodingKeys.printerHeader.stringValue: return printerHeader
+            case CodingKeys.usernameHeader.stringValue: return usernameHeader
+            case CodingKeys.closeButton.stringValue: return closeButton
+            case CodingKeys.title.stringValue: return title
             default: return nil
             }
         }

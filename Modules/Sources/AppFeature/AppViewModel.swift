@@ -73,7 +73,8 @@ public class AppViewModel: ObservableObject {
     
     func showMain() {
         route = .main(
-            .init()
+            // Using witghdependencies(from: self) here makes sure that if you have overridden dependencies e.g. for using a mock endpoint, the children use the mocked endpoint and not the liev one
+            withDependencies(from: self, operation: MainViewModel.init)
         )
     }
 }

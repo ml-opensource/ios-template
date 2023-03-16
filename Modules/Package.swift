@@ -33,7 +33,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.4"),
         .package(url: "https://github.com/nstack-io/nstack-ios-sdk", branch: "feature/spm-support"),
-        .package(url: "https://github.com/nodes-ios/MLTokenHandler-ios.git", from: "0.9.0"),
+        .package(url: "https://github.com/nodes-ios/MLTokenHandler-ios.git", from: "0.9.1"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
