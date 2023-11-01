@@ -1,4 +1,4 @@
-import CombineSchedulers
+import Clocks
 import SwiftUI
 
 public class MainViewModel: ObservableObject {
