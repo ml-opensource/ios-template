@@ -28,10 +28,10 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-tagged", from: "0.6.0"),
         .package(url: "https://github.com/pointfreeco/swift-identified-collections", from: "0.3.2"),
-        .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.3"),
+        .package(url: "https://github.com/pointfreeco/swift-clocks.git", from: "1.0.0"),
         .package(url: "https://github.com/pointfreeco/swiftui-navigation", from: "0.1.0"),
-        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.1"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.1.4"),
+        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.0.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.0.0"),
         .package(url: "https://github.com/nstack-io/nstack-ios-sdk", branch: "feature/spm-support"),
         .package(url: "https://github.com/nodes-ios/MLTokenHandler-ios.git", from: "0.9.1"),
     ],
@@ -65,7 +65,7 @@ let package = Package(
             dependencies: [
                 "APIClient", "LoginFeature", "MainFeature", "NetworkClient",
                 "PersistenceClient",
-                .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                .product(name: "Clocks", package: "swift-clocks"),
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
                 .product(name: "SwiftUINavigation", package: "swiftui-navigation"),
             ],
@@ -88,7 +88,7 @@ let package = Package(
             name: "LoginFeature",
             dependencies: [
                 "APIClient", "AppVersion",
-                .product(name: "CombineSchedulers", package: "combine-schedulers"), "Localizations",
+                .product(name: "Clocks", package: "swift-clocks"),
                 "Model", "Style",
                 .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
@@ -98,7 +98,7 @@ let package = Package(
         .testTarget(
             name: "LoginFeatureTests",
             dependencies: [
-                "LoginFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                "LoginFeature", .product(name: "Clocks", package: "swift-clocks"),
             ]),
         .target(
             name: "Localizations",
@@ -126,7 +126,7 @@ let package = Package(
         .testTarget(
             name: "MainFeatureTests",
             dependencies: [
-                "MainFeature", .product(name: "CombineSchedulers", package: "combine-schedulers"),
+                "MainFeature", .product(name: "Clocks", package: "swift-clocks"),
             ]),
         .target(
             name: "Model",
